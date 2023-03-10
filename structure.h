@@ -15,7 +15,7 @@ typedef struct Etat{
 }Etat;
 typedef struct Transitions{
     Etat* data;
-    struct Transions* next;
+    struct Transitions* next;
 }Transition;
 typedef struct Transitions listEtat;
 #endif //AUTOMATE2_STRUCTURE_H
