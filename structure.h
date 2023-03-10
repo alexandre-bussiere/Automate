@@ -4,14 +4,18 @@
 
 #ifndef AUTOMATE2_STRUCTURE_H
 #define AUTOMATE2_STRUCTURE_H
+#include <stdbool.h>
+
 typedef struct Etat{
     char* nom;
     struct Transions** listTransitions;
     int* listnbTransitions;
+    bool entree;
+    bool sortie;
 }Etat;
-typedef struct Transions{
+typedef struct Transitions{
     Etat* data;
     struct Transions* next;
-}Transitions;
-typedef struct Transions listEtat;
+}Transition;
+typedef struct Transitions listEtat;
 #endif //AUTOMATE2_STRUCTURE_H
