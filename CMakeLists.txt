@@ -3,4 +3,4 @@ project(Automate C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Automate main.c structure.h)
+add_executable(Automate main.c structure.h get_from_txt.c get_from_txt.h)
