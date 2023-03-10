@@ -5,7 +5,7 @@
 int main() {
     printf("Hello, World!\n");
     char* a = extractLine(4);
-    printf("%s",a);
+    //printf("%s",a);
 
     return 0;
 }
