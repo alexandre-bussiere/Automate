@@ -5,10 +5,13 @@
 #ifndef AUTOMATE_GET_FROM_TXT_H
 #define AUTOMATE_GET_FROM_TXT_H
 
+#include "stdio.h"
+#include "stdlib.h"
+
 char*** take_Everyting_FromTxt(void);// -> return toute la ligne n°ligne en forme de tableaux de char*
-char* extractAgreeFormeFromLine(int indexLineToExtract); //-> return la forme fléchis de la ligne envoyer
-char* extractBaseFormeFromLine(int indexLineToExtract); //-> return la forme de base de la ligne envoyer
-char* extractInformationFromLine(int indexLineToExtract); //-> return les informations de la ligne envoyer
+char* extract_Name_FormeFromLine(int indexLineToExtract); //-> return le nom de la ligne envoyer
+char* extract_alphabet_FromLine(int indexLineToExtract); //-> return l'alphabet de base de la ligne envoyer
+char** extractLine(int indexLineToExtract); //-> return la ligne envoyer
 
 
 #endif //AUTOMATE_GET_FROM_TXT_H
