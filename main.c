@@ -4,12 +4,8 @@
 
 int main() {
     printf("Hello, World!\n");
-    char* nom = extract_alphabet_FromLine(3);
-    //printf("%s",nom);
-    //int i = Nb_Colone();
-    nom = extract_alphabet_FromLine(3);
-    printf("%s",nom);
-
+    char* a = extractLine(4);
+    printf("%s",a);
 
     return 0;
 }

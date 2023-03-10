@@ -28,6 +28,7 @@ char* extract_Name_FormeFromLine(int indexLineToExtract){
         fscanf(table, "%s", ligne);// sort le premier terme
         // printf("\n%s", ligne);
     }
+    fclose(table);
     return ligne;
 
 } //-> return le nom de la ligne envoyer
@@ -53,17 +54,21 @@ char* extract_alphabet_FromLine(int indexLineToExtract){
         fscanf(table, "%s", ligne);// sort le premier terme
         // printf("\n%s", ligne);
     }
+    fclose(table);
     return ligne;
 
 } //-> return l'alphabet de base de la ligne envoyer
 
+
+
+
+
 char* extractLine(int indexLineToExtract){
 
-    char *ligne = (char *) malloc(80 * sizeof(char));
-    char *alphabet = (char *) malloc(80 * sizeof(char));
+    char *ligne = (char *) malloc(10 * sizeof(char));
+    char *alphabet = (char *) malloc(200 * sizeof(char));
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
-    int nb_colone=Nb_Colone();
 
     if (table == NULL) {
         printf("Error fichier introuvable");
@@ -72,20 +77,26 @@ char* extractLine(int indexLineToExtract){
 
     while (i < indexLineToExtract - 1) { // avance jusqu'a la ligne indexLineToExtract
         ligne[0] = (char) fgetc(table);
-        // printf("%s", ligne);
+        //printf("%s", ligne);
         if (*ligne == '\n') {
             i++;
         }
     }
+    ligne[0] = (char) fgetc(table);
+    //alphabet = "-";
     while (*ligne != '\n') { // avance jusqu'a la fin de la 1er ligne
         fscanf(table, "%s", ligne);
+        strcat (alphabet , ligne);
         ligne[0] = (char) fgetc(table);
-        // printf("%s", ligne);
-        alphabet = strcat (alphabet , ligne);
+        printf("%s", ligne);
     }
-
+    fclose(table);
     return (alphabet);
 } //-> return la ligne envoyer
+
+
+
+
 
 int Nb_Colone(void){
 
@@ -101,10 +112,11 @@ int Nb_Colone(void){
     while (*ligne != '\n') { // avance jusqu'a la fin de la 1er ligne
         fscanf(table, "%s", ligne);
         ligne[0] = (char) fgetc(table);
-        // printf("%s", ligne);
+        //printf("%s", ligne);
         i++;
     }
     ligne[0] = (char) fgetc(table);
+    fclose(table);
     return i;
 
 } // -> sort le nombre de colone dans le txt

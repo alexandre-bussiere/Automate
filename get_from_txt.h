@@ -10,11 +10,11 @@
 #include "string.h"
 
 char*** take_Everyting_FromTxt(void);// -> return toute la ligne n°ligne en forme de tableaux de char*
-char* extract_Name_FormeFromLine(int indexLineToExtract); //-> return le nom de la ligne envoyer
+char* extract_Name_FormeFromLine(int indexLineToExtract); //-> return le nom de la ligne envoyer                    DONE
 char* extract_alphabet_FromLine(int indexLineToExtract); //-> return l'alphabet de base de la ligne envoyer
-char* extractLine(int indexLineToExtract); //-> return la ligne envoyer
+char* extractLine(int indexLineToExtract); //-> return la ligne envoyer                                             Fuck
 
-int Nb_Colone(void); // -> sort le nombre de colone dans le txt
+int Nb_Colone(void); // -> sort le nombre de colone dans le txt                                                     DONE
 
 
 #endif //AUTOMATE_GET_FROM_TXT_H
