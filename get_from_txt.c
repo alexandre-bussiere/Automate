@@ -57,8 +57,34 @@ char* extract_alphabet_FromLine(int indexLineToExtract){
 
 } //-> return l'alphabet de base de la ligne envoyer
 
-char** extractLine(int indexLineToExtract){
+char* extractLine(int indexLineToExtract){
 
+    char *ligne = (char *) malloc(80 * sizeof(char));
+    char *alphabet = (char *) malloc(80 * sizeof(char));
+    int i = 0;
+    FILE *table = fopen("../table_transition.txt","r");
+    int nb_colone=Nb_Colone();
+
+    if (table == NULL) {
+        printf("Error fichier introuvable");
+        return " ";
+    }
+
+    while (i < indexLineToExtract - 1) { // avance jusqu'a la ligne indexLineToExtract
+        ligne[0] = (char) fgetc(table);
+        // printf("%s", ligne);
+        if (*ligne == '\n') {
+            i++;
+        }
+    }
+    while (*ligne != '\n') { // avance jusqu'a la fin de la 1er ligne
+        fscanf(table, "%s", ligne);
+        ligne[0] = (char) fgetc(table);
+        // printf("%s", ligne);
+        alphabet = strcat (alphabet , ligne);
+    }
+
+    return (alphabet);
 } //-> return la ligne envoyer
 
 int Nb_Colone(void){
@@ -67,13 +93,18 @@ int Nb_Colone(void){
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
+    if (table == NULL) {
+        printf("Error fichier introuvable");
+        return 0;
+    }
+
     while (*ligne != '\n') { // avance jusqu'a la fin de la 1er ligne
-        ligne[0] = (char) fgetc(table);
         fscanf(table, "%s", ligne);
-        printf("%s",ligne);
+        ligne[0] = (char) fgetc(table);
         // printf("%s", ligne);
         i++;
     }
     ligne[0] = (char) fgetc(table);
     return i;
+
 } // -> sort le nombre de colone dans le txt
