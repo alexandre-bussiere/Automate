@@ -6,7 +6,7 @@
 #define AUTOMATE2_STRUCTURE_H
 typedef struct Etat{
     char* nom;
-    struct Transions** listLiaisons;
+    struct Transions** listTransitions;
     int* listnbTransitions;
 }Etat;
 typedef struct Transions{
