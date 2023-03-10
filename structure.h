@@ -4,14 +4,17 @@
 
 #ifndef AUTOMATE2_STRUCTURE_H
 #define AUTOMATE2_STRUCTURE_H
+
 typedef struct Etat{
     char* nom;
-    struct liaisons** listLiaisons;
-    int* listnbvoisins;
+    struct Transions** listTransitions;
+    int* listnbTransitions;
 }Etat;
-typedef struct liaisons{
+typedef struct Transions{
     Etat* data;
-    struct liaisons* next;
-}liaisons;
-typedef struct liaisons listEtat;
+    struct Transions* next;
+}Transitions;
+typedef struct Transions listEtat;
+
 #endif //AUTOMATE2_STRUCTURE_H
+
