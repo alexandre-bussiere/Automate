@@ -7,14 +7,14 @@
 
 typedef struct Etat{
     char* nom;
-    struct Transions** listTransitions;
+    struct Transitions** listTransitions;
     int* listnbTransitions;
 }Etat;
-typedef struct Transions{
+typedef struct Transitions{
     Etat* data;
-    struct Transions* next;
+    struct Transitions* next;
 }Transitions;
-typedef struct Transions listEtat;
+typedef struct Transitions listEtat;
 
 #endif //AUTOMATE2_STRUCTURE_H
 
