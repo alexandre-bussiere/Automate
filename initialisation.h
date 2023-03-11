@@ -6,7 +6,7 @@
 #ifndef AUTOMATE2_INITIALISATION_H
 #define AUTOMATE2_INITIALISATION_H
 listEtat *creerListEtat();
-Transition *crrerTransition();
+Transitions *creerTransition();
 Etat *creerEtat(char *nom, int nblettre);
 void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num);
 
