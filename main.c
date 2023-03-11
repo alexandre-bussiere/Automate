@@ -4,8 +4,9 @@
 
 int main() {
     printf("Hello, World!\n");
-    char* a = extractLine(4);
-    printf("%s",a);
-
+    //char* a = extract_alphabet_FromLine(4);
+    //printf("%s",a);
+    int b = Nb_Ligne();
+    printf("%d",b);
     return 0;
 }
