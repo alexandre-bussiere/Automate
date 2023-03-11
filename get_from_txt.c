@@ -65,8 +65,9 @@ char* extract_alphabet_FromLine(int indexLineToExtract){
 
 char* extractLine(int indexLineToExtract){
 
+    int nb_Colone=Nb_Colone();
     char *ligne = (char *) malloc(10 * sizeof(char));
-
+    char* tab= (char *) malloc(100 * sizeof(char));
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
@@ -82,15 +83,23 @@ char* extractLine(int indexLineToExtract){
             i++;
         }
     }
+    //printf("%s \n",ligne);
+    //printf("%s \n",tab);
     i = 0;
-    while ( i < Nb_Colone() ){
-        fscanf(table, "%s", ligne);
-        printf("%s ",ligne);
-        i++;
-    }
+    *tab= '\0';
+    while ( i < nb_Colone ){
 
+        fscanf(table, "%s", ligne);
+        //printf("%s\n ",ligne);
+        i++;
+        strcat(tab, ligne);
+        strcat(tab, " ");
+        //printf("%s\n", tab);
+    }
     fclose(table);
-    return (ligne);
+
+    return (tab);
+
 } //-> return la ligne envoyer
 
 
