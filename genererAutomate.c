@@ -27,7 +27,7 @@ Etat* findEtatinList(char *nom,   listEtat* listEtatpres) {
 Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres) {
     int nblettre = strlen(listLetrres),nbtransition;
     int listnbtrnasition [nblettre];
-    Etat *NewEtat, *EtatLie;Transition * list;
+    Etat *NewEtat, *EtatLie;Transitions * list;
     char** listnomtransition[nblettre],c[1];
     for (int i = 0; i < nblettre; i++) {
         listnbtrnasition[i]=nbtransition;

@@ -8,6 +8,7 @@
 #endif //AUTOMATE2_GENERERAUTOMATE_H
 #include "structure.h"
 #include "initialisation.h"
+#include "stdlib.h"
 Etat* findEtatinList(char *nom,   listEtat* listEtatpres);
 Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres);
 listEtat* creerAutomate(char *listLettres, int nbEtat);

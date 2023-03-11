@@ -4,7 +4,7 @@
 
 #include "initialisation.h"
 Transitions *creerTransition() {
-    Transitions *NewList = malloc(sizeof(Transition));
+    Transitions *NewList = malloc(sizeof(Transitions));
     NewList->data = NULL;
     NewList->next = NULL;
     return NewList;
@@ -38,4 +38,16 @@ void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num) {
     }
     temp->next = NewList;
 
+}
+listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
+    char* list[4]={"0","1","2","3"};
+    listEtat* temp=Automate;
+    for (int i=0; i<nbEtat;i++){
+        temp->data= creerEtat(list[i],nblettre);
+        if (i<nbEtat-1){
+            temp->next= creerListEtat();
+        }
+        temp=temp->next;
+    }
+    return Automate;
 }
