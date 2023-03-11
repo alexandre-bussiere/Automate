@@ -13,7 +13,7 @@ char*** take_Everyting_FromTxt(void){
     return tab;
 }// -> return toute la ligne n°ligne en forme de tableaux de char*
 
-char* extract_Name_FormeFromLine(int indexLineToExtract){
+char* extract_Name_FromLine(int indexLineToExtract){
 
     char *ligne = (char *) malloc(80 * sizeof(char));
     int i = 0;
