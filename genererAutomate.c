@@ -3,6 +3,19 @@
 //
 
 #include "genererAutomate.h"
+int lenlist(char** ch){
+    int i=0;
+    if (ch[i]==NULL){
+        return 0;
+    }
+    while (ch[i][0]>='0' && ch[i][0]<='9'){
+        i++;
+        if (ch[i]==NULL){
+            return i;
+        }
+    }
+    return i;
+}
 bool isSameWord(char *mot1, char *mot2) {
     int taille = strlen(mot1);
     if (taille != strlen(mot2)) {
@@ -15,7 +28,7 @@ bool isSameWord(char *mot1, char *mot2) {
     return mot1[i] == mot2[i];
 }
 
-Etat* findEtatinList(char *nom,   listEtat* listEtatpres) {
+Etat* findEtatinList(Nom nom,   listEtat* listEtatpres) {
     listEtat* temp=listEtatpres;
     while (temp!=NULL && !isSameWord(temp->data->nom,nom)){
         temp=temp->next;
@@ -24,17 +37,13 @@ Etat* findEtatinList(char *nom,   listEtat* listEtatpres) {
 }
 
 
-Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres) {
+Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres, Nom** listnomtransition) {
     int nblettre = strlen(listLetrres),nbtransition;
     int listnbtrnasition [nblettre];
-    Etat *NewEtat, *EtatLie;Transitions * list;
-    char** listnomtransition[nblettre],c[1];
+    Etat *EtatLie;
     for (int i = 0; i < nblettre; i++) {
+        nbtransition= lenlist(listnomtransition[i]);
         listnbtrnasition[i]=nbtransition;
-        listnomtransition[i]= malloc(nbtransition * sizeof (char*));
-        for (int j=0; j < nbtransition; j++){
-            listnomtransition[i][j]= malloc(1 * sizeof (char));
-        }
     }
     for (int i=0; i<nblettre;i++){
         int taille=listnbtrnasition[i];
@@ -47,13 +56,15 @@ Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres) {
 
 }
 
-listEtat* creerAutomate(char *listLettres, int nbEtat){
+listEtat* creerAutomate(char *listLettres, int nbEtat,char** listnom, Nom*** listnomtransition){
     listEtat* Automate= creerListEtat(),*temp;
-    ajouterEtat(Automate,nbEtat, strlen(listLettres));
+    ajouterEtat(Automate,nbEtat, strlen(listLettres),listnom);
     temp=Automate;
+    int i=0;
     while (temp!=NULL){
-        temp->data= creerchemin(temp->data,Automate,listLettres);
+        temp->data= creerchemin(temp->data,Automate,listLettres,listnomtransition[i]);
         temp=temp->next;
+        i++;
     }
     return Automate;
 

@@ -19,7 +19,7 @@ Etat *creerEtat(char *nom, int nblettre) {
     NewEtat->listTransitions = malloc(sizeof (Transitions));
     NewEtat->listnbTransitions= malloc(nblettre * sizeof (int));
     for (int i=0;i<nblettre;i++){
-        NewEtat->listTransitions[i]= creerTransition();
+        NewEtat->listTransitions[i]= NULL;
         NewEtat->listnbTransitions[i]=0;
     }
     return NewEtat;
@@ -29,7 +29,8 @@ void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num) {
     Transitions *NewList = creerTransition(), *temp=EtatX->listTransitions[num];
     NewList->data = EtatLie;
     EtatX->listnbTransitions[num]++;
-    if (temp->data == NULL) {
+    if (temp== NULL) {
+        temp=EtatX->listTransitions[num]= creerTransition();
         *temp = *NewList;
         return;
     }
@@ -39,11 +40,10 @@ void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num) {
     temp->next = NewList;
 
 }
-listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
-    char* list[4]={"0","1","2","3"};
+listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre, Nom* listnom) {
     listEtat* temp=Automate;
     for (int i=0; i<nbEtat;i++){
-        temp->data= creerEtat(list[i],nblettre);
+        temp->data= creerEtat(listnom[i],nblettre);
         if (i<nbEtat-1){
             temp->next= creerListEtat();
         }

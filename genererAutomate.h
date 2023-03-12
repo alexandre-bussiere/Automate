@@ -9,6 +9,8 @@
 #include "structure.h"
 #include "initialisation.h"
 #include "stdlib.h"
-Etat* findEtatinList(char *nom,   listEtat* listEtatpres);
-Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres);
-listEtat* creerAutomate(char *listLettres, int nbEtat);
+
+bool isSameWord(char *mot1, char *mot2);
+Etat* findEtatinList( Nom nom,   listEtat* listEtatpres);
+Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres,Nom** listnomtransition);
+listEtat* creerAutomate(char *listLettres, int nbEtat, char** listnom, Nom*** listtransition);
