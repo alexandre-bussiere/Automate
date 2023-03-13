@@ -9,8 +9,8 @@
 #include "stdlib.h"
 #include "string.h"
 
-char*** take_Everyting_FromTxt(void);// -> return toute la ligne n°ligne en forme de tableaux de char*
-char* extract_Name_FromLine(int indexLineToExtract); //-> return le nom de la ligne envoyer                    DONE
+char**** take_Everyting_FromTxt(void);// -> return toute la ligne n°ligne en forme de tableaux de char*
+char* extract_Name_FromLine(int indexLineToExtract); //-> return le nom de la ligne envoyer                         DONE
 char* extract_alphabet_FromLine(int indexLineToExtract); //-> return l'alphabet de base de la ligne envoyer         DONE
 char* extractLine(int indexLineToExtract); //-> return la ligne envoyer                                             DONE
 

@@ -4,11 +4,11 @@
 
 #include "get_from_txt.h"
 
-char*** take_Everyting_FromTxt(void){
+char**** take_Everyting_FromTxt(void){
     int nb_colone = Nb_Colone();
     int nb_ligne = Nb_Ligne();
     char*** tab;
-
+    //fault faire un 3d 2d ligne colonne + 3d si il y a 2 truc dans la meme case
 
     return tab;
 }// -> return toute la ligne n°ligne en forme de tableaux de char*
