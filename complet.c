@@ -17,4 +17,5 @@ bool IsComplet (listEtat automate ) {
             complet = false;
         }
     }
+    return complet;
 }
