@@ -4,30 +4,35 @@
 
 #include "determine.h"
 
-bool isAutomatonDetermine(listEtat* automaton){
-    bool moreThanOneTransition;
-    int countEntry=0, i;
-    int nbColumn=3; // = function Alex nb column;
+bool isAutomatonDetermine(listEtat *automaton) {
+    bool moreThanOneTransition = false;
+    int countEntry = 0, i;
+    int nbColumn = 3; // = function Alex nb column;
 
-    if(automaton==NULL){
-        Etat* currentEtat = automaton->data;
-        listEtat* nextLine = automaton->next;
-        do{
-            i=0;
-            if(currentEtat->entree){
+    if ((automaton != NULL) && (automaton->data != NULL)) {
+        Etat *currentEtat = automaton->data;
+        listEtat *nextLine = automaton->next;
+        do {
+            i = 0;
+            // compter le nb d'entrée
+            if (currentEtat->entree) {
                 countEntry++;
             }
-            while((i < nbColumn) && (currentEtat->listnbTransitions[i] < 2)){
+            // compter le nb de liaison
+            while ((i < nbColumn) && (!(moreThanOneTransition))) {
+                if (currentEtat->listnbTransitions[i] >= 2) {
+                    moreThanOneTransition = true;
+                }
                 i++;
             }
-            if(currentEtat->listnbTransitions[i] < 2){
-                moreThanOneTransition = true;
+            if (nextLine != NULL) {
+                currentEtat = nextLine->data; // aller au prochaine état
+                nextLine = nextLine->next; // parcours liste chaine contenant les états
             }
-            nextLine = nextLine->next;
-        }while ((nextLine!=NULL) && (!(moreThanOneTransition)) && ((countEntry<2)));
+        } while ((nextLine != NULL) && (!(moreThanOneTransition)) && ((countEntry < 2)));
     }
 
-    if((countEntry==1) && (!(moreThanOneTransition))){
+    if ((countEntry == 1) && (!(moreThanOneTransition))) {
         return true;
     }
     return false;
