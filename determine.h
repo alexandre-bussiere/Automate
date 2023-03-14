@@ -7,6 +7,6 @@
 #include "basiqueFunction.h"
 #include <stdio.h>
 
-bool isAutomatonDetermine(listEtat currentAutomaton);
+bool isAutomatonDetermine(listEtat* currentAutomaton);
 
 #endif //AUTOMATE_DETERMINE_H
