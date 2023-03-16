@@ -8,7 +8,7 @@
 
 typedef struct Etat{
     char* nom;
-    struct Transions** listTransitions;
+    struct Transitions** listTransitions;
     int* listnbTransitions;
     bool entree;
     bool sortie;
