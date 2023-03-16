@@ -9,8 +9,9 @@
 #include "structure.h"
 #include "initialisation.h"
 #include "stdlib.h"
-
+#include "GetFromTxt.h"
+int lenlist(char** ch);
 bool isSameWord(char *mot1, char *mot2);
 Etat* findEtatinList( Nom nom,   listEtat* listEtatpres);
 Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres,Nom** listnomtransition);
-listEtat* creerAutomate(char *listLettres, int nbEtat, char** listnom, Nom*** listtransition);
+listEtat* creerAutomate(char *listLettres);

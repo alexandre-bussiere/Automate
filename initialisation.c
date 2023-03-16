@@ -40,10 +40,11 @@ void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num) {
     temp->next = NewList;
 
 }
-listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre, Nom* listnom) {
+listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
     listEtat* temp=Automate;
     for (int i=0; i<nbEtat;i++){
-        temp->data= creerEtat(listnom[i],nblettre);
+        char* nom= extract_Name_FromLine(2+i);
+        temp->data= creerEtat(nom,nblettre);
         if (i<nbEtat-1){
             temp->next= creerListEtat();
         }

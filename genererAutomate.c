@@ -56,13 +56,16 @@ Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres, Nom**
 
 }
 
-listEtat* creerAutomate(char *listLettres, int nbEtat,char** listnom, Nom*** listnomtransition){
+listEtat* creerAutomate(char *listLettres){
+    int nbEtat=3,nblettre=Nb_Colone()-2;
+
     listEtat* Automate= creerListEtat(),*temp;
-    ajouterEtat(Automate,nbEtat, strlen(listLettres),listnom);
+    ajouterEtat(Automate,nbEtat, strlen(listLettres));
     temp=Automate;
     int i=0;
     while (temp!=NULL){
-        temp->data= creerchemin(temp->data,Automate,listLettres,listnomtransition[i]);
+        char***listnomtransition=getListLiaison(i+2,nblettre);
+        temp->data= creerchemin(temp->data,Automate,listLettres,listnomtransition );
         temp=temp->next;
         i++;
     }

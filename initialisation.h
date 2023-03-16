@@ -3,6 +3,7 @@
 //
 #include "structure.h"
 #include "stdlib.h"
+#include "GetFromTxt.h"
 
 #ifndef AUTOMATE2_INITIALISATION_H
 #define AUTOMATE2_INITIALISATION_H
@@ -11,6 +12,6 @@ listEtat *creerListEtat();
 Transitions *creerTransition();
 Etat *creerEtat(Nom, int nblettre);
 void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num);
-listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre, Nom* listnom);
+listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre);
 
 #endif //AUTOMATE2_INITIALISATION_H
