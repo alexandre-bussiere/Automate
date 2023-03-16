@@ -4,18 +4,71 @@
 
 #include "get_from_txt.h"
 
+
 char**** take_Everyting_FromTxt(void){
-    int nb_colone = Nb_Colone();
+    int nb_colonne = Nb_Colone();
     int nb_ligne = Nb_Ligne();
-    char*** tab;
-    //fault faire un 3d 2d ligne colonne + 3d si il y a 2 truc dans la meme case
+    int nb_alphabet = nb_colonne-2;
+
+    char* *** tab = (char****)malloc(nb_ligne * sizeof(char* **));
+
+    if (tab == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
+    for (int i = 0; i < nb_ligne; i++)
+    {
+        tab[i] = (char* **)malloc(nb_colonne * sizeof(char* *));
+
+        if (tab[i] == NULL)
+        {
+            printf( "Out of memory");
+            exit(0);
+        }
+
+        for (int j = 0; j < nb_colonne; j++)
+        {
+            tab[i][j] = (char* *)malloc(nb_alphabet * sizeof(char*));
+            if (tab[i][j] == NULL)
+            {
+                printf( "Out of memory");
+                exit(0);
+            }
+            for (int k = 0; k < nb_alphabet; k++){
+                tab[i][j][k]=(char *) malloc(10 * sizeof(char));
+            }
+        }
+    }
+
+    char delimiteur[] = " ";
+
+    for(int i=1 ;i<nb_ligne+1 ;i++){
+        char* line = extractLine(i);
+        char* delim_line = strtok(line,delimiteur);
+        int k = 0;
+        while (delim_line != NULL){
+            tab[i-1][k][0] = delim_line;
+            printf("'%s'\n",delim_line);
+            delim_line = strtok(NULL, delimiteur);
+            k++;
+        }
+
+    }
 
     return tab;
 }// -> return toute la ligne n°ligne en forme de tableaux de char*
 
+
 char* extract_Name_FromLine(int indexLineToExtract){
 
     char *ligne = (char *) malloc(80 * sizeof(char));
+    if (ligne == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
@@ -42,7 +95,21 @@ char* extract_alphabet_FromLine(int indexLineToExtract){
 
     int nb_Colone=Nb_Colone();
     char *ligne = (char *) malloc(10 * sizeof(char));
+
+    if (ligne == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     char* tab= (char *) malloc(100 * sizeof(char));
+
+    if (tab == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
@@ -86,7 +153,21 @@ char* extractLine(int indexLineToExtract){
 
     int nb_Colone=Nb_Colone();
     char *ligne = (char *) malloc(10 * sizeof(char));
+
+    if (ligne == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     char* tab= (char *) malloc(100 * sizeof(char));
+
+    if (tab == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
@@ -128,6 +209,13 @@ char* extractLine(int indexLineToExtract){
 int Nb_Colone(void){
 
     char *ligne = (char *) malloc(80 * sizeof(char));
+
+    if (ligne == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     int i = 0;
     FILE *table = fopen("../table_transition.txt","r");
 
@@ -154,6 +242,12 @@ int Nb_Ligne()
     int count_lines = 0;
     char *ligne = (char *) malloc(80 * sizeof(char));
 
+    if (ligne == NULL)
+    {
+        printf( "Out of memory");
+        exit(0);
+    }
+
     //extract character from file and store in chr
     ligne[0] =(char) fgetc(table);
     while (ligne[0] != EOF)
@@ -170,3 +264,5 @@ int Nb_Ligne()
     count_lines ++; // donne le nombre de ligne exact dans un txt (a enlever si vous vouler le nombre de ligne sans la premiere ligne.
     return count_lines;
 }
+
+
