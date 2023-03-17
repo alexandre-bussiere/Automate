@@ -7,9 +7,9 @@ int main() {
     int nb_colone = Nb_Colone();
     int nb_ligne = Nb_Ligne();
     printf("printing the values in array: \n\n");
-    for (int i = 0; i < nb_colone-1; i++)
+    for (int i = 0; i < nb_ligne; i++)
     {
-        for (int j = 0; j < nb_ligne+1; j++)
+        for (int j = 0; j < nb_colone; j++)
         {
             for (int k = 0; k < nb_ligne-1; k++) {
                 printf("%s ", tab[i][j][k]);
@@ -18,6 +18,6 @@ int main() {
         }
         printf("\n");
     }
-
+    free(tab);
     return 0;
 }

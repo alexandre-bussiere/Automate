@@ -8,7 +8,7 @@
 char**** take_Everyting_FromTxt(void){
     int nb_colonne = Nb_Colone();
     int nb_ligne = Nb_Ligne();
-    int nb_alphabet = nb_ligne-1;
+    int nb_etat = nb_ligne - 1;
 
     char* *** tab = (char****)malloc(nb_ligne * sizeof(char* **));
 
@@ -30,13 +30,13 @@ char**** take_Everyting_FromTxt(void){
 
         for (int j = 0; j < nb_colonne; j++)
         {
-            tab[i][j] = (char* *)malloc(nb_alphabet * sizeof(char*));
+            tab[i][j] = (char* *)malloc(nb_etat * sizeof(char*));
             if (tab[i][j] == NULL)
             {
                 printf( "Out of memory");
                 exit(0);
             }
-            for (int k = 0; k < nb_alphabet; k++){
+            for (int k = 0; k < nb_etat; k++){
                 tab[i][j][k]=(char *) malloc(10 * sizeof(char));
             }
         }
@@ -45,7 +45,7 @@ char**** take_Everyting_FromTxt(void){
 
     for (int j = 0; j < nb_ligne; ++j) {
         for (int n = 0; n < nb_colonne; ++n) {
-            for (int y = 0; y < nb_alphabet; y++) {
+            for (int y = 0; y < nb_etat; y++) {
                 tab[j][n][y]=NULL;
             }
         }
@@ -53,12 +53,12 @@ char**** take_Everyting_FromTxt(void){
 
     char delimiteur[] = " ";
 
-    for(int i=1 ;i<nb_ligne+1 ;i++) {
-        char *line = extractLine(i);
+    for(int i=0 ;i<nb_ligne ;i++) {
+        char *line = extractLine(i+1);
         char *delim_line = strtok(line, delimiteur);
         int k = 0;
         while (delim_line != NULL) {
-            tab[i - 1][k][0] = delim_line;
+            tab[i][k][0] = delim_line;
             //printf("'%s'\n",delim_line);
             delim_line = strtok(NULL, delimiteur);
             k++;
