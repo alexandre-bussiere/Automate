@@ -9,6 +9,7 @@ char**** take_Everyting_FromTxt(void){
     int nb_colonne = Nb_Colone();
     int nb_ligne = Nb_Ligne();
     int nb_etat = nb_ligne - 1;
+    int nb_alphabet = nb_colonne -2 ;
 
     char* *** tab = (char****)malloc(nb_ligne * sizeof(char* **));
 
@@ -69,27 +70,33 @@ char**** take_Everyting_FromTxt(void){
         // place the duplicate variable seperated by a , into a 3d space
     for (int j = 0; j < nb_ligne; ++j) {
         for (int n = 0; n < nb_colonne; ++n) {
+            for (int i = 0; i <nb_alphabet +1; ++i) {
+                if(tab[j][n][i] != NULL) {
+                    int longeur_string = strlen(tab[j][n][i]);
 
-            int longeur_string = strlen(tab[j][n][0]);
+                    for (int lenght = 0; lenght <= (longeur_string) - 1; lenght++) {
 
-            for (int lenght = 0; lenght <= (longeur_string)-1; lenght++) {
+                        if (tab[j][n][i][lenght] == ',') {
+                            char *separators = ",";
+                            char *word = tab[j][n][i];
+                            char *new_delim_line = strtok(word, separators);
+                            int g = 0;
+                            while (new_delim_line != NULL) {
+                                tab[j][n][g+i] = new_delim_line;
+                                printf("'%s'\n", new_delim_line);
+                                new_delim_line = strtok(NULL, new_delim_line);
+                                g++;
 
-                if (tab[j][n][0][lenght] == ',') {
-                    char * separators = " ,.-!";
-                    char* word = tab[j][n][0];
-                    char *new_delim_line = strtok(word, separators);
-                    int g = 0;
-                    while (new_delim_line != NULL) {
-                        tab[j][n][g] = new_delim_line;
-                        printf("'%s'\n", new_delim_line);
-                        new_delim_line = strtok(NULL, new_delim_line);
-                        g++;
-
+                            }
+                        }
                     }
                 }
             }
         }
     }
+    
+
+
     return tab;
 }// -> return toute la ligne n°ligne en forme de tableaux de char*
 
@@ -297,5 +304,3 @@ int Nb_Ligne()
     count_lines ++; // donne le nombre de ligne exact dans un txt (a enlever si vous vouler le nombre de ligne sans la premiere ligne.
     return count_lines;
 }
-
-
