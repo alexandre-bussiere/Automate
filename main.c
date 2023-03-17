@@ -1,8 +1,17 @@
 #include <stdio.h>
+
+#include "afficherAutomate.h"
 #include "get_from_txt.h"
 
 
+
 int main() {
+
+
+    listEtat* Automate= creerAutomate("abcd");
+    displayAutomate(Automate,"abcd");
+    
+    
     char* *** tab = take_Everyting_FromTxt();
     int nb_colone = Nb_Colone();
     int nb_ligne = Nb_Ligne();
