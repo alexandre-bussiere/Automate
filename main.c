@@ -19,5 +19,11 @@ int main() {
         printf("\n");
     }
     free(tab);
-    return 0;
+
+    printf("%d\n",Nb_Colone());
+    printf("%d\n",Nb_Ligne());
+    printf("%s\n", extract_alphabet_FromLine(1));
+    printf("%s\n", extract_Name_FromLine(5));
+
+     return 0;
 }

@@ -83,7 +83,7 @@ char**** take_Everyting_FromTxt(void){
                             int g = 0;
                             while (new_delim_line != NULL) {
                                 tab[j][n][g+i] = new_delim_line;
-                                printf("'%s'\n", new_delim_line);
+                                //printf("'%s'\n", new_delim_line);
                                 new_delim_line = strtok(NULL, new_delim_line);
                                 g++;
 
