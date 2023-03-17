@@ -4,9 +4,8 @@
 
 
 int main() {
-    char* listLettres="abc";
-    listEtat* Automate= creerAutomate(listLettres);
-    displayAutomate(Automate,listLettres);
+    listEtat* Automate= creerAutomate("abcd");
+    displayAutomate(Automate,"abcd");
 
 
     return 0;

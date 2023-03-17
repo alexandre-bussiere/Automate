@@ -22,6 +22,7 @@ Etat *creerEtat(char *nom, int nblettre) {
         NewEtat->listTransitions[i]= NULL;
         NewEtat->listnbTransitions[i]=0;
     }
+    NewEtat->entree=NewEtat->sortie=false;
     return NewEtat;
 }
 

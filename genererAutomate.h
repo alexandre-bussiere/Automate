@@ -9,7 +9,7 @@
 #include "structure.h"
 #include "initialisation.h"
 #include "stdlib.h"
-#include "GetFromTxt.h"
+#include "get_from_txt.h"
 int lenlist(char** ch);
 bool isSameWord(char *mot1, char *mot2);
 Etat* findEtatinList( Nom nom,   listEtat* listEtatpres);

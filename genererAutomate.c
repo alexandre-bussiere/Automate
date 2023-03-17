@@ -16,6 +16,18 @@ int lenlist(char** ch){
     }
     return i;
 }
+void isEntreeSortie(Etat* EtatX,char*** ligne,int nbcolonne){
+    char* data=ligne[nbcolonne-1][0];
+    if (data[0]=='E'){
+        EtatX->entree=true;
+        if (data[1]=='S'){
+            EtatX->sortie=true;
+        }
+    }
+    if (data[0]=='S'){
+        EtatX->sortie=true;
+    }
+}
 bool isSameWord(char *mot1, char *mot2) {
     int taille = strlen(mot1);
     if (taille != strlen(mot2)) {
@@ -42,13 +54,13 @@ Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres, Nom**
     int listnbtrnasition [nblettre];
     Etat *EtatLie;
     for (int i = 0; i < nblettre; i++) {
-        nbtransition= lenlist(listnomtransition[i]);
+        nbtransition= lenlist(listnomtransition[i+1]);
         listnbtrnasition[i]=nbtransition;
     }
-    for (int i=0; i<nblettre;i++){
+    for (int i=0; i<nblettre+1;i++){
         int taille=listnbtrnasition[i];
         for (int j=0;j<taille;j++){
-            EtatLie= findEtatinList(listnomtransition[i][j], listEtatspres);
+            EtatLie= findEtatinList(listnomtransition[i+1][j], listEtatspres);
             ajouterTransition(EtatX, EtatLie, i);
         }
     }
@@ -57,15 +69,16 @@ Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres, Nom**
 }
 
 listEtat* creerAutomate(char *listLettres){
-    int nbEtat=3,nblettre=Nb_Colone()-2;
+    int nbEtat=Nb_Ligne()-1,nblettre=Nb_Colone()-2;
 
     listEtat* Automate= creerListEtat(),*temp;
     ajouterEtat(Automate,nbEtat, strlen(listLettres));
     temp=Automate;
-    int i=0;
+    char**** listNomTransition=take_Everyting_FromTxt();
+    int i=1;
     while (temp!=NULL){
-        char***listnomtransition=getListLiaison(i+2,nblettre);
-        temp->data= creerchemin(temp->data,Automate,listLettres,listnomtransition );
+        isEntreeSortie(temp->data,listNomTransition[i],nblettre+2);
+        temp->data= creerchemin(temp->data,Automate,listLettres,listNomTransition[i]);
         temp=temp->next;
         i++;
     }

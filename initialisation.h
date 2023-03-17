@@ -3,7 +3,7 @@
 //
 #include "structure.h"
 #include "stdlib.h"
-#include "GetFromTxt.h"
+#include "get_from_txt.h"
 
 #ifndef AUTOMATE2_INITIALISATION_H
 #define AUTOMATE2_INITIALISATION_H
