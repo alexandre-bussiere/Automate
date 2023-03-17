@@ -37,7 +37,7 @@ char**** take_Everyting_FromTxt(void){
                 printf( "Out of memory");
                 exit(0);
             }
-            for (int k = 0; k < nb_etat; k++){
+            for (int k = 0; k < nb_etat+1; k++){
                 tab[i][j][k]=(char *) malloc(10 * sizeof(char));
             }
         }
@@ -52,7 +52,7 @@ char**** take_Everyting_FromTxt(void){
         }
     }//initialise tout a NULL
 
-    char delimiteur[] = " ";
+    char delimiteur[] = "   ";
 
     for(int i=0 ;i<nb_ligne ;i++) {
         char *line = extractLine(i+1);
@@ -70,8 +70,9 @@ char**** take_Everyting_FromTxt(void){
         // place the duplicate variable seperated by a , into a 3d space
     for (int j = 0; j < nb_ligne; ++j) {
         for (int n = 0; n < nb_colonne; ++n) {
-            for (int i = 0; i <nb_alphabet +1; ++i) {
+            for (int i = 0; i <nb_etat; ++i) {
                 if(tab[j][n][i] != NULL) {
+                    char* tes = tab[j][n][i];
                     int longeur_string = strlen(tab[j][n][i]);
 
                     for (int lenght = 0; lenght <= (longeur_string) - 1; lenght++) {
