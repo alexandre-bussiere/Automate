@@ -37,7 +37,7 @@ char**** take_Everyting_FromTxt(void){
                 printf( "Out of memory");
                 exit(0);
             }
-            for (int k = 0; k < nb_etat+1; k++){
+            for (int k = 0; k < nb_etat; k++){
                 tab[i][j][k]=(char *) malloc(10 * sizeof(char));
             }
         }
