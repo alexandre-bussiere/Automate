@@ -3,16 +3,15 @@
 
 
 int main() {
-    printf("Hello, World!\n");
     char* *** tab = take_Everyting_FromTxt();
     int nb_colone = Nb_Colone();
     int nb_ligne = Nb_Ligne();
-    printf("printing the values in array: \n");
+    printf("printing the values in array: \n\n");
     for (int i = 0; i < nb_colone-1; i++)
     {
         for (int j = 0; j < nb_ligne+1; j++)
         {
-            for (int k = 0; k < nb_colone-2; k++) {
+            for (int k = 0; k < nb_ligne-1; k++) {
                 printf("%s ", tab[i][j][k]);
             }
             printf("\n");

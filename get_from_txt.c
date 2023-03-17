@@ -8,7 +8,7 @@
 char**** take_Everyting_FromTxt(void){
     int nb_colonne = Nb_Colone();
     int nb_ligne = Nb_Ligne();
-    int nb_alphabet = nb_colonne-2;
+    int nb_alphabet = nb_ligne-1;
 
     char* *** tab = (char****)malloc(nb_ligne * sizeof(char* **));
 
@@ -41,6 +41,7 @@ char**** take_Everyting_FromTxt(void){
             }
         }
     }
+//alocation dinamique des ariable
 
     for (int j = 0; j < nb_ligne; ++j) {
         for (int n = 0; n < nb_colonne; ++n) {
@@ -48,7 +49,8 @@ char**** take_Everyting_FromTxt(void){
                 tab[j][n][y]=NULL;
             }
         }
-    }
+    }//initialise tout a NULL
+
     char delimiteur[] = " ";
 
     for(int i=1 ;i<nb_ligne+1 ;i++) {
@@ -73,16 +75,13 @@ char**** take_Everyting_FromTxt(void){
             for (int lenght = 0; lenght <= (longeur_string)-1; lenght++) {
 
                 if (tab[j][n][0][lenght] == ',') {
-                    //printf("Found , at %d %d \n", j, n);
-
+                    char * separators = " ,.-!";
                     char* word = tab[j][n][0];
-                    //printf("%s\n",word);
-
-                    char *new_delim_line = strtok(word, ",");
+                    char *new_delim_line = strtok(word, separators);
                     int g = 0;
                     while (new_delim_line != NULL) {
                         tab[j][n][g] = new_delim_line;
-                        //printf("'%s'\n", new_delim_line);
+                        printf("'%s'\n", new_delim_line);
                         new_delim_line = strtok(NULL, new_delim_line);
                         g++;
 
