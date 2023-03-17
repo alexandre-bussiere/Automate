@@ -1,3 +1,9 @@
+
+//
+// Created by bussi on 10/03/2023.
+//
+
+
 #include "get_from_txt.h"
 
 
@@ -64,6 +70,7 @@ char**** take_Everyting_FromTxt(void){
 
 
     // place the duplicate variable seperated by a , into a 3d space
+
     for (int j = 0; j < nb_ligne; ++j) {
         for (int n = 0; n < nb_colonne; ++n) {
             for (int i = 0; i <nb_etat; ++i) {
@@ -92,6 +99,7 @@ char**** take_Everyting_FromTxt(void){
         }
     }
 
+    
 
 
     return tab;
