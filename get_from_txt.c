@@ -42,21 +42,55 @@ char**** take_Everyting_FromTxt(void){
         }
     }
 
+    for (int j = 0; j < nb_ligne; ++j) {
+        for (int n = 0; n < nb_colonne; ++n) {
+            for (int y = 0; y < nb_alphabet; y++) {
+                tab[j][n][y]=NULL;
+            }
+        }
+    }
     char delimiteur[] = " ";
 
-    for(int i=1 ;i<nb_ligne+1 ;i++){
-        char* line = extractLine(i);
-        char* delim_line = strtok(line,delimiteur);
+    for(int i=1 ;i<nb_ligne+1 ;i++) {
+        char *line = extractLine(i);
+        char *delim_line = strtok(line, delimiteur);
         int k = 0;
-        while (delim_line != NULL){
-            tab[i-1][k][0] = delim_line;
-            printf("'%s'\n",delim_line);
+        while (delim_line != NULL) {
+            tab[i - 1][k][0] = delim_line;
+            //printf("'%s'\n",delim_line);
             delim_line = strtok(NULL, delimiteur);
             k++;
         }
-
     }
 
+
+        // place the duplicate variable seperated by a , into a 3d space
+    for (int j = 0; j < nb_ligne; ++j) {
+        for (int n = 0; n < nb_colonne; ++n) {
+
+            int longeur_string = strlen(tab[j][n][0]);
+
+            for (int lenght = 0; lenght <= (longeur_string)-1; lenght++) {
+
+                if (tab[j][n][0][lenght] == ',') {
+                    //printf("Found , at %d %d \n", j, n);
+
+                    char* word = tab[j][n][0];
+                    //printf("%s\n",word);
+
+                    char *new_delim_line = strtok(word, ",");
+                    int g = 0;
+                    while (new_delim_line != NULL) {
+                        tab[j][n][g] = new_delim_line;
+                        //printf("'%s'\n", new_delim_line);
+                        new_delim_line = strtok(NULL, new_delim_line);
+                        g++;
+
+                    }
+                }
+            }
+        }
+    }
     return tab;
 }// -> return toute la ligne n°ligne en forme de tableaux de char*
 
