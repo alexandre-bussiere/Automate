@@ -6,5 +6,5 @@
 #define AUTOMATE_COMPLET_H
 #include "structure.h"
 
-bool IsComplet (listEtat A);
+bool IsComplet (listEtat *automate);
 #endif //AUTOMATE_COMPLET_H

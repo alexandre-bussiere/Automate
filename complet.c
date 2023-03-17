@@ -7,17 +7,21 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-bool IsComplet (listEtat automate ) {
+bool IsComplet(listEtat *automate) {
     bool complet = true;
     int nbLettre = 3;
-    while ((nombre.next != NULL) && (complet != false) ){
-        int i =0;
-        while ((automate.data->listnbTransitions[i] != 0) &&(i<nbLettre - 1)){
+    Etat *temp = automate->data;
+    listEtat *tempNext = automate->next;
+    while ((tempNext->next != NULL) && (complet != false)) {
+        int i = 0;
+        while ((temp->listnbTransitions[i] != 0) && (i < nbLettre - 1)) {
             i++;
         }
-        if (automate.data->listnbTransitions[i] != 0){
+        if (temp->listnbTransitions[i] == 0) {
             complet = false;
         }
+        temp = tempNext->data; // aller au prochaine état
+        tempNext = tempNext->next; // parcours liste chaine contenant les états
     }
     return complet;
 }
