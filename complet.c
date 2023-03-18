@@ -7,7 +7,7 @@
 
 bool IsComplet(listEtat *automate) {
     bool complet = true;
-    int nbLettre = 3;
+    int nbLettre = Nb_Colone() - 2;
     Etat *temp = automate->data;
     listEtat *tempNext = automate->next;
     while ((tempNext->next != NULL) && (complet != false)) {

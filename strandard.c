@@ -6,7 +6,7 @@
 
 bool isAutomatStandard(listEtat *automaton) {
     int countEntry = 0;
-    int nbColumn = 3; // = function Alex nb column;
+    int nbColumn = Nb_Colone() - 2;
 
     if ((automaton != NULL) && (automaton->data != NULL)) {
         Etat *currentEtat = automaton->data;

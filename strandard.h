@@ -5,6 +5,7 @@
 #ifndef AUTOMATE_STRANDARD_H
 #define AUTOMATE_STRANDARD_H
 #include "structure.h"
+#include "genererAutomate.h"
 #include <stdlib.h>
 #include <stdio.h>
 
