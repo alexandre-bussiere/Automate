@@ -9,8 +9,9 @@ bool IsComplet(listEtat *automate) {
     bool complet = true;
     int nbLettre = Nb_Colone() - 2;
     Etat *temp = automate->data;
-    listEtat *tempNext = automate->next;
-    while ((tempNext->next != NULL) && (complet != false)) {
+    listEtat *tempNext = automate;
+    do {
+        tempNext = tempNext->next; // parcours liste chaine contenant les états
         int i = 0;
         while ((temp->listnbTransitions[i] != 0) && (i < nbLettre - 1)) {
             i++;
@@ -18,8 +19,9 @@ bool IsComplet(listEtat *automate) {
         if (temp->listnbTransitions[i] == 0) {
             complet = false;
         }
-        temp = tempNext->data; // aller au prochaine état
-        tempNext = tempNext->next; // parcours liste chaine contenant les états
-    }
+        if (tempNext != NULL) {
+            temp = tempNext->data; // aller au prochaine état
+        }
+    } while ((tempNext != NULL) && (complet != false));
     return complet;
 }
