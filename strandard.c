@@ -8,7 +8,7 @@ bool isAutomatStandard(listEtat *automaton) {
     int countEntry = 0;
     int nbColumn = Nb_Colone() - 2;
 
-    if ((automaton != NULL) && (automaton->data != NULL)) {
+    if ((automaton != NULL) || (automaton->data != NULL)) {
         Etat *currentEtat = automaton->data;
         Etat *adresseEntree = NULL;
         listEtat *nextLine = automaton->next;
@@ -30,13 +30,13 @@ bool isAutomatStandard(listEtat *automaton) {
         Etat *EtatActuel;
         listEtat *ligneSuivante;
         currentEtat = automaton->data;
-        nextLine = automaton->next;
-
+        nextLine = automaton;
 
         do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
             for (int i = 0; i < nbColumn; i++) {
                 int nbTransition = currentEtat->listnbTransitions[i];
-                if(nbTransition != 0){
+                if (nbTransition != 0) {
                     EtatActuel = currentEtat->listTransitions[i]->data;
                     ligneSuivante = currentEtat->listTransitions[i]->next;
                     for (int j = 0; j < nbTransition; j++) {
@@ -49,10 +49,10 @@ bool isAutomatStandard(listEtat *automaton) {
                         }
                     }
                 }
+
             }
             if (nextLine != NULL) {
                 currentEtat = nextLine->data; // aller au prochaine état
-                nextLine = nextLine->next; // parcours liste chaine contenant les états
             }
         } while ((nextLine != NULL));
     }
