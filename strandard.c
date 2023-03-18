@@ -11,8 +11,9 @@ bool isAutomatStandard(listEtat *automaton) {
     if ((automaton != NULL) || (automaton->data != NULL)) {
         Etat *currentEtat = automaton->data;
         Etat *adresseEntree = NULL;
-        listEtat *nextLine = automaton->next;
+        listEtat *nextLine = automaton;
         do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
             // compter le nb d'entrée
             if (currentEtat->entree) {
                 countEntry++;
@@ -20,7 +21,6 @@ bool isAutomatStandard(listEtat *automaton) {
             }
             if (nextLine != NULL) {
                 currentEtat = nextLine->data; // aller au prochaine état
-                nextLine = nextLine->next; // parcours liste chaine contenant les états
             }
         } while ((nextLine != NULL) && ((countEntry < 2)));
 
