@@ -7,12 +7,13 @@
 bool isAutomatonDetermine(listEtat *automaton) {
     bool moreThanOneTransition = false;
     int countEntry = 0, i;
-    int nbColumn = Nb_Colone() - 2; // = function Alex nb column;
+    int nbColumn = Nb_Colone() - 2;
 
-    if ((automaton != NULL) && (automaton->data != NULL)) {
+    if ((automaton != NULL) || (automaton->data != NULL)) {
         Etat *currentEtat = automaton->data;
-        listEtat *nextLine = automaton->next;
+        listEtat *nextLine = automaton;
         do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
             i = 0;
             // compter le nb d'entrée
             if (currentEtat->entree) {
@@ -27,7 +28,6 @@ bool isAutomatonDetermine(listEtat *automaton) {
             }
             if (nextLine != NULL) {
                 currentEtat = nextLine->data; // aller au prochaine état
-                nextLine = nextLine->next; // parcours liste chaine contenant les états
             }
         } while ((nextLine != NULL) && (!(moreThanOneTransition)) && ((countEntry < 2)));
     }
