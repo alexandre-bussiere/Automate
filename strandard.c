@@ -29,6 +29,8 @@ bool isAutomatStandard(listEtat *automaton) {
         }
         Etat *EtatActuel;
         listEtat *ligneSuivante;
+        currentEtat = automaton->data;
+        nextLine = automaton->next;
 
         do {
             for (int i = 0; i < nbColumn; i++) {
@@ -38,7 +40,7 @@ bool isAutomatStandard(listEtat *automaton) {
                     if (EtatActuel == adresseEntree) {
                         return false;
                     }
-                    if (nextLine != NULL) {
+                    if (ligneSuivante != NULL) {
                         EtatActuel = ligneSuivante->data; // aller au prochaine état
                         ligneSuivante = ligneSuivante->next; // parcours liste chaine contenant les transitions
                     }
