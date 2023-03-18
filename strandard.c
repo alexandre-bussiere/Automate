@@ -32,21 +32,24 @@ bool isAutomatStandard(listEtat *automaton) {
         currentEtat = automaton->data;
         nextLine = automaton->next;
 
+
         do {
             for (int i = 0; i < nbColumn; i++) {
-                do {
+                int nbTransition = currentEtat->listnbTransitions[i];
+                if(nbTransition != 0){
                     EtatActuel = currentEtat->listTransitions[i]->data;
                     ligneSuivante = currentEtat->listTransitions[i]->next;
-                    if (EtatActuel == adresseEntree) {
-                        return false;
+                    for (int j = 0; j < nbTransition; j++) {
+                        if (EtatActuel == adresseEntree) {
+                            return false;
+                        }
+                        if (ligneSuivante != NULL) {
+                            EtatActuel = ligneSuivante->data; // aller au prochaine état
+                            ligneSuivante = ligneSuivante->next; // parcours liste chaine contenant les transitions
+                        }
                     }
-                    if (ligneSuivante != NULL) {
-                        EtatActuel = ligneSuivante->data; // aller au prochaine état
-                        ligneSuivante = ligneSuivante->next; // parcours liste chaine contenant les transitions
-                    }
-                } while ((ligneSuivante != NULL));
+                }
             }
-
             if (nextLine != NULL) {
                 currentEtat = nextLine->data; // aller au prochaine état
                 nextLine = nextLine->next; // parcours liste chaine contenant les états
