@@ -28,6 +28,7 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
         printf("%s\t|\t",temp->data->nom);
         for (int i=0;i<nblettres;i++){
             liaisons1=temp->data->listTransitions[i];
+            int j=0;
             while (liaisons1!=NULL){
                 printf("%s,", liaisons1->data->nom);
                 liaisons1=liaisons1->next;

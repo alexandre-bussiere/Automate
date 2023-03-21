@@ -8,4 +8,6 @@
 #include "genererAutomate.h"
 
 bool IsComplet (listEtat *automate);
+void Complet(listEtat *automate);
+
 #endif //AUTOMATE_COMPLET_H

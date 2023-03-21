@@ -29,16 +29,17 @@ Etat *creerEtat(char *nom, int nblettre) {
 void ajouterTransition(Etat* EtatX, Etat * EtatLie, int num) {
     Transitions *NewList = creerTransition(), *temp=EtatX->listTransitions[num];
     NewList->data = EtatLie;
-    EtatX->listnbTransitions[num]++;
-    if (temp== NULL) {
+    if (EtatX->listnbTransitions[num]==0) {
         temp=EtatX->listTransitions[num]= creerTransition();
         *temp = *NewList;
+        EtatX->listnbTransitions[num]=1;
         return;
     }
     while (temp->next != NULL) {
         temp = temp->next;
     }
     temp->next = NewList;
+    EtatX->listnbTransitions[num]++;
 
 }
 listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
@@ -52,4 +53,14 @@ listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
         temp=temp->next;
     }
     return Automate;
+}
+
+void ajouter1etat(listEtat* Automate, Etat *NewEtat){
+
+    listEtat *temp = Automate;
+    while(temp->next!=NULL) {
+        temp = temp->next;
+    }
+    temp->next=creerListEtat();
+    temp->next->data = NewEtat;
 }
