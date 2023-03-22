@@ -45,7 +45,7 @@ bool isCharInString(char characterToVerify, char *string) {
     return false;
 }
 
-bool areStringTheSame(char *string1, char *string2) {
+bool areStringTheSame(char *string1, char *string2) { // compare 2 string, but here 120=012
     int length1 = strlen(string1), count = 0;
     if (length1 != strlen(string2)) {
         return false;
@@ -59,6 +59,17 @@ bool areStringTheSame(char *string1, char *string2) {
         return true;
     }
     return false;
+}
+
+Etat *findSimilarEtat(listEtat *currentAutomate, char *nameEtat) {
+    listEtat *temp = currentAutomate;
+    while ((temp != NULL) && (!areStringTheSame(temp->data->nom, nameEtat))) {
+        temp = temp->next;
+    }
+    if (temp != NULL) {
+        return temp->data;
+    }
+    return NULL;
 }
 
 void updateListnbTransitions(Etat *currentEtat) {
@@ -180,4 +191,8 @@ void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) {
     Transitions *temp2 = creerTransition();
     temp2->data = etatToAdd;
     temp->next = temp2;
+}
+
+void Test(){
+
 }

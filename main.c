@@ -20,19 +20,11 @@ int main() {
     printf("c:%d\n", IsComplet(Automate));
     printf("s:%d\n", isAutomatStandard(Automate));
 
-    Etat *test= combineEveryEntry(Automate);
-    displayAutomate(Automate,"abcd");
     printf("\n\n\n");
 
-    addEtatEndAutomate(Automate, test);
-    displayAutomate(Automate,"abcd");
+    listEtat *determineTest = determine(Automate);
+    displayAutomate(determineTest,"abcd");
 
-    listEtat *endOfAutomate = Automate;
-    while (endOfAutomate->next!=NULL){
-        endOfAutomate=endOfAutomate->next;
-    }
-    test = combineEveryEtatFromTransitions(endOfAutomate->data->listTransitions[1]);
-    addEtatEndAutomate(Automate, test);
-    displayAutomate(Automate,"abcd");
+    Test();
     return 0;
 }
