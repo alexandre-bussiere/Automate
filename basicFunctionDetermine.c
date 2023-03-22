@@ -90,6 +90,34 @@ void updateListnbTransitions(Etat *currentEtat) {
     }
 }
 
+void updateListTransitions(listEtat *currentAutomate){
+    int nbColumn = Nb_Colone() - 2;
+    Etat *currentTransitions;
+    Transitions *nextTransitions;
+    Etat *currentEtat = currentAutomate->data;
+    listEtat *nextLine = currentAutomate;
+    Etat *etatToPointTo;
+    char *nameCurrentTransition;
+
+    do {
+        nextLine = nextLine->next; // parcours liste chaine contenant les états
+        for (int i = 0; i < nbColumn; i++) {
+            int nbTransition = currentEtat->listnbTransitions[i];
+            if (nbTransition != 0) {
+                currentTransitions = currentEtat->listTransitions[i]->data;
+                nextTransitions = currentEtat->listTransitions[i]->next;
+                nameCurrentTransition = concatNameTransition(currentTransitions->listTransitions[i]);
+                etatToPointTo = findSimilarEtat(currentAutomate, nameCurrentTransition);
+                currentTransitions = etatToPointTo;
+                nextTransitions=NULL;
+            }
+        }
+        if (nextLine != NULL) {
+            currentEtat = nextLine->data; // aller au prochaine état
+        }
+    } while ((nextLine != NULL));
+}
+
 Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
     Etat *newCombineEtat;
     int nbColumn = Nb_Colone() - 2;
@@ -109,7 +137,7 @@ Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
     updateListnbTransitions(newCombineEtat);
 
     //État combiner, entrée/sortie
-    if ((firstEtat->entree) || (secondEtat->entree)) {
+    if ((firstEtat->entree) && (secondEtat->entree)) {
         newCombineEtat->entree = true;
     }
     if ((firstEtat->sortie) || (secondEtat->sortie)) {
@@ -138,6 +166,7 @@ Etat *combineEveryEntry(listEtat *automate) {
             }
         } while (nextLine != NULL);
     }
+    combineEntry->entree = true;
     return combineEntry;
 }
 
@@ -170,7 +199,7 @@ char *concatNameTransition(Transitions *listCurrentTransitions) {
         do {
             nextLine = nextLine->next; // parcours liste chaine contenant les états
             if (nameConcat == NULL) {
-                nameConcat = currentEtat->nom;
+                nameConcat = copyString(currentEtat->nom);
             } else {
                 strcat(nameConcat, currentEtat->nom);
             }
@@ -193,6 +222,6 @@ void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) {
     temp->next = temp2;
 }
 
-void Test(){
+void Test() {
 
 }

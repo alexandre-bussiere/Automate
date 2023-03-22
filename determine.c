@@ -43,31 +43,30 @@ listEtat *determine(listEtat *currentAutomaton) {
         return currentAutomaton;
     }
     listEtat *determineAutomate = creerTransition();
-    listEtat *currentTransition = determineAutomate;
-    currentTransition->data = combineEveryEntry(currentAutomaton);
+    listEtat *currentLine = determineAutomate;
+    currentLine->data = combineEveryEntry(currentAutomaton);
     int nbColumn = Nb_Colone() - 2;
-    int haveEtatToAdd = 0;
-    Etat *currentEtat = currentTransition->data, *etatToAdd;
+    Etat *currentEtat = currentLine->data, *etatToAdd;
     char *nameCurrentTransition;
 
-    currentTransition = currentTransition->next;
-    while ((haveEtatToAdd != nbColumn) && (currentTransition!=NULL)) {
-        haveEtatToAdd = 0;
+    while (currentLine != NULL) {
         for (int i = 0; i < nbColumn; i++) {
-            nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
-            etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition);
-            if (etatToAdd == NULL) {
-                etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]);
-                addEtatEndAutomate(determineAutomate, etatToAdd);
-            } else {
-                haveEtatToAdd++;
+            if (currentEtat->listnbTransitions[i] != 0) {
+                nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
+                etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition);
+                if (etatToAdd == NULL) {
+                    etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]);
+                    etatToAdd->entree = false;
+                    addEtatEndAutomate(determineAutomate, etatToAdd);
+                }
             }
         }
-        if(currentTransition!=NULL){
-            currentEtat = currentTransition->data;
-            currentTransition=currentTransition->next;
+        if (currentLine != NULL) {
+            currentEtat = currentLine->data;
+            currentLine = currentLine->next;
         }
     }
 
+    updateListTransitions(determineAutomate);
     return determineAutomate;
 }

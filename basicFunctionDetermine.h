@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 void updateListnbTransitions(Etat *currentEtat);
+void updateListTransitions(listEtat *currentAutomate);
 
 Etat *findSimilarEtat(listEtat *currentAutomate, char *nameEtat); // comme findEtatinList, mais l'état 120 = l'état 012
 
