@@ -13,7 +13,7 @@ int main() {
     listEtat* Automate= creerAutomate("abcd");
     displayAutomate(Automate,"abcd");
 
-
+/*
     char* *** tab = take_Everyting_FromTxt();
     int nb_colone = Nb_Colone();
     int nb_ligne = Nb_Ligne();
@@ -35,9 +35,11 @@ int main() {
     printf("%d\n",Nb_Ligne());
     printf("%s\n", extract_alphabet_FromLine(1));
     printf("%s\n", extract_Name_FromLine(3));
+*/
 
-    printf("d:%d\n", isAutomatonDetermine(Automate));
     printf("c:%d\n", IsComplet(Automate));
-    printf("s:%d\n", isAutomatStandard(Automate));
+
+    Complet(Automate);
+    displayAutomate(Automate,"abcd");
     return 0;
 }
