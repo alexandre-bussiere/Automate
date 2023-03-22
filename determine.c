@@ -37,3 +37,10 @@ bool isAutomatonDetermine(listEtat *automaton) {
     }
     return false;
 }
+
+int determine(listEtat *currentAutomaton){
+    if(isAutomatonDetermine(currentAutomaton)){
+        return 1;
+    }
+
+}
