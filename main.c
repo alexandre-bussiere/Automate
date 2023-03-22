@@ -32,6 +32,8 @@ int main() {
     temp2->data = test;
     temp->next = temp2;
     displayAutomate(Automate,"abcd");
+    char *test2= concatNameTransition(temp2->data->listTransitions[3]);
+    printf("\nHERE : %s\n", test2);
 
     return 0;
 }

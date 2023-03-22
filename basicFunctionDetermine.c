@@ -103,3 +103,25 @@ Etat *combineEveryEntry(listEtat *automate) {
     }
     return combineEntry;
 }
+
+
+char *concatNameTransition(Transitions *listCurrentTransitions) {
+    char *nameConcat = NULL;
+    if ((listCurrentTransitions != NULL) || (listCurrentTransitions->data != NULL)) {
+        Etat *currentEtat = listCurrentTransitions->data;
+        listEtat *nextLine = listCurrentTransitions;
+        do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
+            if (nameConcat == NULL) {
+                nameConcat = currentEtat->nom;
+            } else {
+                strcat(nameConcat, currentEtat->nom);
+            }
+
+            if (nextLine != NULL) {
+                currentEtat = nextLine->data; // aller au prochaine état
+            }
+        } while (nextLine != NULL);
+    }
+    return nameConcat;
+}
