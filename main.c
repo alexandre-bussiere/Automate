@@ -24,6 +24,7 @@ int main() {
 
     listEtat *determineTest = determine(Automate);
     displayAutomate(determineTest,"abcd");
+    printf("d:%d\n", isAutomatonDetermine(determineTest));
 
     Test();
     return 0;

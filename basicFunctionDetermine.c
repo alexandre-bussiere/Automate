@@ -92,8 +92,6 @@ void updateListnbTransitions(Etat *currentEtat) {
 
 void updateListTransitions(listEtat *currentAutomate){
     int nbColumn = Nb_Colone() - 2;
-    Etat *currentTransitions;
-    Transitions *nextTransitions;
     Etat *currentEtat = currentAutomate->data;
     listEtat *nextLine = currentAutomate;
     Etat *etatToPointTo;
@@ -104,12 +102,11 @@ void updateListTransitions(listEtat *currentAutomate){
         for (int i = 0; i < nbColumn; i++) {
             int nbTransition = currentEtat->listnbTransitions[i];
             if (nbTransition != 0) {
-                currentTransitions = currentEtat->listTransitions[i]->data;
-                nextTransitions = currentEtat->listTransitions[i]->next;
-                nameCurrentTransition = concatNameTransition(currentTransitions->listTransitions[i]);
+                nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
                 etatToPointTo = findSimilarEtat(currentAutomate, nameCurrentTransition);
-                currentTransitions = etatToPointTo;
-                nextTransitions=NULL;
+                currentEtat->listTransitions[i]->data = etatToPointTo;
+                currentEtat->listTransitions[i]->next=NULL;
+                currentEtat->listnbTransitions[i]=1;
             }
         }
         if (nextLine != NULL) {
