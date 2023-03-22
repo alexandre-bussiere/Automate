@@ -24,16 +24,15 @@ int main() {
     displayAutomate(Automate,"abcd");
     printf("\n\n\n");
 
-    listEtat *temp = Automate;
-    while (temp->next!=NULL){
-        temp=temp->next;
-    }
-    Transitions *temp2 = creerTransition();
-    temp2->data = test;
-    temp->next = temp2;
+    addEtatEndAutomate(Automate, test);
     displayAutomate(Automate,"abcd");
-    char *test2= concatNameTransition(temp2->data->listTransitions[3]);
-    printf("\nHERE : %s\n", test2);
 
+    listEtat *endOfAutomate = Automate;
+    while (endOfAutomate->next!=NULL){
+        endOfAutomate=endOfAutomate->next;
+    }
+    test = combineEveryEtatFromTransitions(endOfAutomate->data->listTransitions[1]);
+    addEtatEndAutomate(Automate, test);
+    displayAutomate(Automate,"abcd");
     return 0;
 }

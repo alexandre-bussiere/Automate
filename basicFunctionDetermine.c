@@ -104,6 +104,26 @@ Etat *combineEveryEntry(listEtat *automate) {
     return combineEntry;
 }
 
+Etat *combineEveryEtatFromTransitions(Transitions *listCurrentTransitions) {
+    Etat *combineEtat = NULL;
+    if ((listCurrentTransitions != NULL) || (listCurrentTransitions->data != NULL)) {
+        Etat *currentEtat = listCurrentTransitions->data;
+        listEtat *nextLine = listCurrentTransitions;
+        do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
+            if (combineEtat == NULL) {
+                combineEtat = currentEtat;
+            } else {
+                combineEtat = combine2Etat(combineEtat, currentEtat);
+            }
+
+            if (nextLine != NULL) {
+                currentEtat = nextLine->data; // aller au prochaine état
+            }
+        } while (nextLine != NULL);
+    }
+    return combineEtat;
+}
 
 char *concatNameTransition(Transitions *listCurrentTransitions) {
     char *nameConcat = NULL;
@@ -117,11 +137,21 @@ char *concatNameTransition(Transitions *listCurrentTransitions) {
             } else {
                 strcat(nameConcat, currentEtat->nom);
             }
-
             if (nextLine != NULL) {
                 currentEtat = nextLine->data; // aller au prochaine état
             }
         } while (nextLine != NULL);
     }
     return nameConcat;
+}
+
+
+void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd){
+    listEtat *temp = automate;
+    while (temp->next!=NULL){
+        temp=temp->next;
+    }
+    Transitions *temp2 = creerTransition();
+    temp2->data = etatToAdd;
+    temp->next = temp2;
 }

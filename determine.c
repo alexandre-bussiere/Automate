@@ -42,5 +42,8 @@ int determine(listEtat *currentAutomaton){
     if(isAutomatonDetermine(currentAutomaton)){
         return 1;
     }
+    listEtat *determineAutomate=creerTransition();
+    listEtat *temp=determineAutomate;
+    temp->data= combineEveryEntry(currentAutomaton);
 
 }
