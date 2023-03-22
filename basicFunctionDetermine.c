@@ -35,6 +35,32 @@ char *copyString(char *s) {
     return s2;
 }
 
+bool isCharInString(char characterToVerify, char *string) {
+    int length = strlen(string);
+    for (int i = 0; i < length; i++) {
+        if (string[i] == characterToVerify) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool areStringTheSame(char *string1, char *string2) {
+    int length1 = strlen(string1), count = 0;
+    if (length1 != strlen(string2)) {
+        return false;
+    }
+    for (int i = 0; i < length1; i++) {
+        if (isCharInString(string1[i], string2)) {
+            count++;
+        }
+    }
+    if (count == length1) {
+        return true;
+    }
+    return false;
+}
+
 void updateListnbTransitions(Etat *currentEtat) {
     int nbColumn = Nb_Colone() - 2;
     int count = 0;
@@ -146,10 +172,10 @@ char *concatNameTransition(Transitions *listCurrentTransitions) {
 }
 
 
-void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd){
+void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) {
     listEtat *temp = automate;
-    while (temp->next!=NULL){
-        temp=temp->next;
+    while (temp->next != NULL) {
+        temp = temp->next;
     }
     Transitions *temp2 = creerTransition();
     temp2->data = etatToAdd;
