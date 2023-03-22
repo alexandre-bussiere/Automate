@@ -20,9 +20,9 @@ int main() {
     printf("c:%d\n", IsComplet(Automate));
     printf("s:%d\n", isAutomatStandard(Automate));
 
-    Etat *test= combine2Etat(Automate->data, Automate->next->data);
+    Etat *test= combineEveryEntry(Automate);
     displayAutomate(Automate,"abcd");
-    printf("\n\n\nNew automate:\n");
+    printf("\n\n\n");
 
     listEtat *temp = Automate;
     while (temp->next!=NULL){

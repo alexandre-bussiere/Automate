@@ -10,5 +10,6 @@
 
 void updateListnbTransitions(Etat *currentEtat);
 Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat);
+Etat *combineEveryEntry(listEtat *automate);
 
 #endif //AUTOMATE_BASICFUNCTIONDETERMINE_H

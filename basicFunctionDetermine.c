@@ -81,3 +81,25 @@ Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
 
     return newCombineEtat;
 }
+
+Etat *combineEveryEntry(listEtat *automate) {
+    Etat *combineEntry = NULL;
+    if ((automate != NULL) || (automate->data != NULL)) {
+        Etat *currentEtat = automate->data;
+        listEtat *nextLine = automate;
+        do {
+            nextLine = nextLine->next; // parcours liste chaine contenant les états
+            if (currentEtat->entree) {
+                if (combineEntry == NULL) {
+                    combineEntry = currentEtat;
+                } else {
+                    combineEntry = combine2Etat(combineEntry, currentEtat);
+                }
+            }
+            if (nextLine != NULL) {
+                currentEtat = nextLine->data; // aller au prochaine état
+            }
+        } while (nextLine != NULL);
+    }
+    return combineEntry;
+}
