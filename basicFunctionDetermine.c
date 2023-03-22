@@ -23,16 +23,29 @@ Transitions *concatListTransition(Transitions *t1, Transitions *t2) {
     return t1;
 }
 
+char *copyString(char *s) {
+    int i;
+    char *s2;
+    s2 = (char *) malloc(20);
+
+    for (i = 0; s[i] != '\0'; i++) {
+        s2[i] = s[i];
+    }
+    s2[i] = '\0';
+    return s2;
+}
+
 void updateListnbTransitions(Etat *currentEtat) {
     int nbColumn = Nb_Colone() - 2;
     int count = 0;
     for (int i = 0; i < nbColumn; i++) {
+        Etat *currentTransition;
         Transitions *nextLine = currentEtat->listTransitions[i];
         do {
             nextLine = nextLine->next; // parcours liste chaine contenant les transitions
             count++;
             if (nextLine != NULL) {
-                currentEtat = nextLine->data; // aller au prochaine état
+                currentTransition = nextLine->data; // aller au prochaine état
             }
         } while (nextLine != NULL);
         currentEtat->listnbTransitions[i] = count;
@@ -41,12 +54,12 @@ void updateListnbTransitions(Etat *currentEtat) {
 }
 
 Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
-    Etat *newCombineEtat = malloc(sizeof(Etat));
+    Etat *newCombineEtat;
     int nbColumn = Nb_Colone() - 2;
 
     //Créé le nom combiner
     char *name;
-    name = firstEtat->nom;;
+    name = copyString(firstEtat->nom);
     strcat(name, secondEtat->nom);
 
     newCombineEtat = creerEtat(name, nbColumn);

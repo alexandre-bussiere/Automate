@@ -20,5 +20,18 @@ int main() {
     printf("c:%d\n", IsComplet(Automate));
     printf("s:%d\n", isAutomatStandard(Automate));
 
+    Etat *test= combine2Etat(Automate->data, Automate->next->data);
+    displayAutomate(Automate,"abcd");
+    printf("\n\n\nNew automate:\n");
+
+    listEtat *temp = Automate;
+    while (temp->next!=NULL){
+        temp=temp->next;
+    }
+    Transitions *temp2 = creerTransition();
+    temp2->data = test;
+    temp->next = temp2;
+    displayAutomate(Automate,"abcd");
+
     return 0;
 }
