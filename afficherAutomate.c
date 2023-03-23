@@ -4,6 +4,10 @@
 
 #include "afficherAutomate.h"
 void displayAutomate(listEtat* Automate, char* listLettres) {
+    for (int g =0 ; g< Nb_Colone()-1;g++) {
+        printf("-------\t");
+    }
+    printf("\n");
     int nblettres= strlen(listLettres);
     listEtat * temp=Automate; Transitions *liaisons1;
     printf("Etats\t|");
@@ -11,7 +15,10 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
         printf("\t%c\t|", listLettres[i]);
     }
     printf("\n");
-    printf("----------------------\n");
+    for (int g =0 ; g< Nb_Colone()-1;g++) {
+        printf("-------\t");
+    }
+    printf("\n");
     while (temp!=NULL){
         if (temp->data->entree==true && temp->data->sortie==true){
             printf("(E/S)");
@@ -35,7 +42,10 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
             printf("\t|\t");
         }
         printf("\n");
-        printf("-------\t-------\t-------\t\n");
+        for (int g =0 ; g< Nb_Colone()-1;g++) {
+            printf("-------\t");
+        }
+        printf("\n");
         temp=temp->next;
     }
 
