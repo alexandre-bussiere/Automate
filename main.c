@@ -41,5 +41,6 @@ int main() {
 
     Complet(Automate);
     displayAutomate(Automate,"abcd");
+    printf("c:%d\n", IsComplet(Automate));
     return 0;
 }

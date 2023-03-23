@@ -45,24 +45,16 @@ void Complet(listEtat *automate){
         int nbColumn = Nb_Colone() - 2;
 
         if ((automate != NULL) || (automate->data != NULL)) {
-            Etat *currentEtat = automate->data;
-            Etat *adresseEntree = NULL;
-            listEtat *nextLine = automate;
-            Etat *EtatActuel;
-            listEtat *ligneSuivante;
-            currentEtat = automate->data;
-            nextLine = automate;
 
-            while ((nextLine != NULL)) {
-                nextLine = nextLine->next; // parcours liste chaine contenant les états
+            while ((automate != NULL)) {
                 for (int i = 0; i < nbColumn; i++) {
-                    int nbTransition = currentEtat->listnbTransitions[i];
+                    int nbTransition = automate->data->listnbTransitions[i];
                     if (nbTransition == 0) {
-                        EtatActuel = currentEtat->listTransitions[i]->data;
-                        ligneSuivante = currentEtat->listTransitions[i]->next;
-                        currentEtat->listTransitions[i]->data = P;
+
+                       automate->data->listTransitions[i] = *P->listTransitions;
                     }
                 }
+                automate = automate->next; // parcours liste chaine contenant les états
             }
         }
     }
