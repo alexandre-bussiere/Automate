@@ -52,3 +52,13 @@ listEtat* ajouterEtat(listEtat* Automate,int nbEtat, int nblettre) {
     }
     return Automate;
 }
+
+void ajouter1etat(listEtat* Automate, Etat *NewEtat){
+
+    listEtat *temp = Automate;
+    while(temp->next!=NULL) {
+        temp = temp->next;
+    }
+    temp->next=creerListEtat();
+    temp->next->data = NewEtat;
+}
