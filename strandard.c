@@ -93,7 +93,10 @@ listEtat *findEntree(listEtat *Automate) {
     return listEntree;
 }
 
-listEtat *standardiseAutomate(listEtat *Automate, int nblettre) {
+void standardiseAutomate(listEtat *Automate, int nblettre) {
+    if (isAutomatStandard(Automate)==true){
+        return;
+    }
     Etat *I = creerEtat("I", nblettre);
     listEtat *listEntree = findEntree(Automate), *temp = listEntree;
     I->sortie=false;
@@ -111,6 +114,8 @@ listEtat *standardiseAutomate(listEtat *Automate, int nblettre) {
     }
     listEtat* EtatStandart=creerListEtat();
     EtatStandart->data=I;
-    EtatStandart->next=Automate;
-    return EtatStandart;
+    EtatStandart->next=creerListEtat();
+    EtatStandart->next->data=Automate->data;
+    EtatStandart->next->next=Automate->next;
+    *Automate=*EtatStandart;
 }
