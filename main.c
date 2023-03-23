@@ -10,9 +10,9 @@
 int main() {
 
     listEtat* Automate= creerAutomate("abcd");
-    printf("%d", isAutomatStandard(Automate));
-    standardiseAutomate(Automate,4);
-    printf("%d", isAutomatStandard(Automate));
+    displayAutomate(Automate,"abcd");
+    printf("\n");
+    standardiseAutomate(Automate);
     displayAutomate(Automate,"abcd");
 
 
