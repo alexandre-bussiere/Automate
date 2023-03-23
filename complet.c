@@ -38,8 +38,7 @@ void Complet(listEtat *automate){
         ajouter1etat(automate, P);
 
         for (int i =0; i< nb_alphabet; i++){
-            P->listTransitions[i] = creerTransition();
-            P->listTransitions[i]->data = P;
+            ajouterTransition(P,P,i);
         }
 
         int nbColumn = Nb_Colone() - 2;
@@ -50,8 +49,7 @@ void Complet(listEtat *automate){
                 for (int i = 0; i < nbColumn; i++) {
                     int nbTransition = automate->data->listnbTransitions[i];
                     if (nbTransition == 0) {
-
-                       automate->data->listTransitions[i] = *P->listTransitions;
+                        ajouterTransition(automate->data,P,i);
                     }
                 }
                 automate = automate->next; // parcours liste chaine contenant les états
