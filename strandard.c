@@ -58,24 +58,7 @@ bool isAutomatStandard(listEtat *automaton) {
     }
     return true;
 }
-Transitions *concatListTransition(Transitions *t1, Transitions *t2) {
-    Transitions *t3 = creerTransition(), *temp, *temp3;
-    temp = t1, temp3 = t3;
-    if (t2 != NULL) {
-        while (temp != NULL) {
-            if (findEtatinList(temp->data->nom, t2) == NULL) {
-                temp3->data = temp->data;
-                temp3->next = creerTransition();
-                temp3 = temp3->next;
-            }
-            temp = temp->next;
-        }
-        temp3->data = t2->data;
-        temp3->next = t2->next;
-        return t3;
-    }
-    return t1;
-}
+
 
 listEtat *findEntree(listEtat *Automate) {
     listEtat *listEntree = creerListEtat(), *temp = Automate, *temp2 = listEntree;

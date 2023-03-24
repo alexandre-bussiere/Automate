@@ -1,2 +1,2 @@
 etat    a    E/S
-0    0    ES
+0    -    ES

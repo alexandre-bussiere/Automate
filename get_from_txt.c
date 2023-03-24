@@ -181,7 +181,7 @@ char* extract_alphabet_FromLine(int indexLineToExtract){
         //printf("%s\n ",ligne);
         i++;
         strcat(tab, ligne);
-        strcat(tab, " ");
+        strcat(tab, "");
         //printf("%s\n", tab);
     }
     fclose(table);

@@ -8,26 +8,28 @@
 
 
 int main() {
-    listEtat* Automate= creerAutomate("abcd");
-    printf("%d", isAutomatStandard(Automate));
-    standardiseAutomate(Automate,4);
-    printf("%d", isAutomatStandard(Automate));
-    displayAutomate(Automate,"abcd");
+    //resoudre se systeme de merde
+    char* listelettre = extract_alphabet_FromLine(0);
 
+    listEtat* Automate= creerAutomate(listelettre);
 
     printf("c:%d\n", IsComplet(Automate));
     Complet(Automate);
-    displayAutomate(Automate,"abcd");
+    displayAutomate(Automate,listelettre);
     printf("c:%d\n", IsComplet(Automate));
 
-    printf("c:%d\n", isAutomatonDetermine(Automate));
-    (Automate);
-    displayAutomate(Automate,"abcd");
-    printf("c:%d\n", isAutomatonDetermine(Automate));
+    listEtat* Automate1= creerAutomate(listelettre);
 
-    printf("c:%d\n", isAutomatStandard(Automate));
-    standardiseAutomate(Automate);
-    displayAutomate(Automate,"abcd");
-    printf("c:%d\n", isAutomatStandard(Automate));
+    printf("c:%d\n", isAutomatonDetermine(Automate1));
+    determine(Automate1);
+    displayAutomate(Automate1,listelettre);
+    printf("c:%d\n", isAutomatonDetermine(Automate1));
+
+    listEtat* Automate2= creerAutomate(listelettre);
+
+    printf("c:%d\n", isAutomatStandard(Automate2));
+    standardiseAutomate(Automate2,Nb_Colone()-2);
+    displayAutomate(Automate2,listelettre);
+    printf("c:%d\n", isAutomatStandard(Automate2));
     return 0;
-}    
+}
