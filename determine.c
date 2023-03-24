@@ -37,3 +37,36 @@ bool isAutomatonDetermine(listEtat *automaton) {
     }
     return false;
 }
+
+listEtat *determine(listEtat *currentAutomaton) {
+    if (isAutomatonDetermine(currentAutomaton)) {
+        return currentAutomaton;
+    }
+    listEtat *determineAutomate = creerTransition();
+    listEtat *currentLine = determineAutomate;
+    currentLine->data = combineEveryEntry(currentAutomaton);
+    int nbColumn = Nb_Colone() - 2;
+    Etat *currentEtat = currentLine->data, *etatToAdd;
+    char *nameCurrentTransition;
+
+    while (currentLine != NULL) {
+        for (int i = 0; i < nbColumn; i++) {
+            if (currentEtat->listnbTransitions[i] != 0) {
+                nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
+                etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition);
+                if (etatToAdd == NULL) {
+                    etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]);
+                    etatToAdd->entree = false;
+                    addEtatEndAutomate(determineAutomate, etatToAdd);
+                }
+            }
+        }
+        if (currentLine != NULL) {
+            currentEtat = currentLine->data;
+            currentLine = currentLine->next;
+        }
+    }
+
+    updateListTransitions(determineAutomate);
+    return determineAutomate;
+}
