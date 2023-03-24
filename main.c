@@ -9,23 +9,25 @@
 
 int main() {
     listEtat* Automate= creerAutomate("abcd");
+    printf("%d", isAutomatStandard(Automate));
+    standardiseAutomate(Automate,4);
+    printf("%d", isAutomatStandard(Automate));
     displayAutomate(Automate,"abcd");
 
-    printf("%d\n",Nb_Colone());
-    printf("%d\n",Nb_Ligne());
-    printf("%s\n", extract_alphabet_FromLine(1));
-    printf("%s\n", extract_Name_FromLine(3));
 
-    printf("\nd:%d\n", isAutomatonDetermine(Automate));
     printf("c:%d\n", IsComplet(Automate));
-    printf("s:%d\n", isAutomatStandard(Automate));
+    Complet(Automate);
+    displayAutomate(Automate,"abcd");
+    printf("c:%d\n", IsComplet(Automate));
 
-    printf("\n\n\n");
+    printf("c:%d\n", isAutomatonDetermine(Automate));
+    (Automate);
+    displayAutomate(Automate,"abcd");
+    printf("c:%d\n", isAutomatonDetermine(Automate));
 
-    listEtat *determineTest = determine(Automate);
-    displayAutomate(determineTest,"abcd");
-    printf("d:%d\n", isAutomatonDetermine(determineTest));
-
-    Test();
+    printf("c:%d\n", isAutomatStandard(Automate));
+    standardiseAutomate(Automate);
+    displayAutomate(Automate,"abcd");
+    printf("c:%d\n", isAutomatStandard(Automate));
     return 0;
-}
+}    
