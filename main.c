@@ -8,28 +8,34 @@
 
 
 int main() {
-    //resoudre se systeme de merde
     char* listelettre = extract_alphabet_FromLine(0);
 
     listEtat* Automate= creerAutomate(listelettre);
+    displayAutomate(Automate, listelettre);
 
     printf("c:%d\n", IsComplet(Automate));
-    Complet(Automate);
-    displayAutomate(Automate,listelettre);
-    printf("c:%d\n", IsComplet(Automate));
+    printf("s:%d\n", isAutomatStandard(Automate));
+    printf("d:%d\n", isAutomatonDetermine(Automate));
 
-    listEtat* Automate1= creerAutomate(listelettre);
+    char tg;
+    int nbLettre = Nb_Colone()-2;
+    printf("Rentrez un truc\n");
+    scanf("%c", &tg);
 
-    printf("c:%d\n", isAutomatonDetermine(Automate1));
-    determine(Automate1);
-    displayAutomate(Automate1,listelettre);
-    printf("c:%d\n", isAutomatonDetermine(Automate1));
+    while (tg!='q'){
+        if(tg=='s'){
+            standardiseAutomate(Automate, nbLettre);
+            displayAutomate(Automate, listelettre);
+        } else if(tg=='d'){
+            determine(Automate);
+            displayAutomate(Automate, listelettre);
+        } else if(tg=='c'){
+            Complet(Automate);
+            displayAutomate(Automate, listelettre);
+        }
+        printf("Rentrez un truc\n");
+        scanf("%c", &tg);
+    }
 
-    listEtat* Automate2= creerAutomate(listelettre);
-
-    printf("c:%d\n", isAutomatStandard(Automate2));
-    standardiseAutomate(Automate2,Nb_Colone()-2);
-    displayAutomate(Automate2,listelettre);
-    printf("c:%d\n", isAutomatStandard(Automate2));
     return 0;
 }

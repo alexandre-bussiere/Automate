@@ -38,9 +38,9 @@ bool isAutomatonDetermine(listEtat *automaton) {
     return false;
 }
 
-listEtat *determine(listEtat *currentAutomaton) {
+int determine(listEtat *currentAutomaton) {
     if (isAutomatonDetermine(currentAutomaton)) {
-        return currentAutomaton;
+        return 0;
     }
     listEtat *determineAutomate = creerTransition();
     listEtat *currentLine = determineAutomate;
@@ -68,5 +68,6 @@ listEtat *determine(listEtat *currentAutomaton) {
     }
 
     updateListTransitions(determineAutomate);
-    return determineAutomate;
+    *currentAutomaton = *determineAutomate;
+    return 0;
 }
