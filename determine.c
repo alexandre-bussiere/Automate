@@ -61,12 +61,11 @@ int determine(listEtat *currentAutomaton) {
                 }
             }
         }
+        currentLine = currentLine->next;
         if (currentLine != NULL) {
             currentEtat = currentLine->data;
-            currentLine = currentLine->next;
         }
     }
-
     updateListTransitions(determineAutomate);
     *currentAutomaton = *determineAutomate;
     return 0;

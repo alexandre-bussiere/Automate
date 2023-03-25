@@ -76,21 +76,21 @@ void updateListnbTransitions(Etat *currentEtat) {
     int nbColumn = Nb_Colone() - 2;
     int count = 0;
     for (int i = 0; i < nbColumn; i++) {
-        Etat *currentTransition;
         Transitions *nextLine = currentEtat->listTransitions[i];
-        do {
-            nextLine = nextLine->next; // parcours liste chaine contenant les transitions
-            count++;
-            if (nextLine != NULL) {
-                currentTransition = nextLine->data; // aller au prochaine état
-            }
-        } while (nextLine != NULL);
+        if (nextLine != NULL) {
+            do {
+                count++;
+                if (nextLine != NULL) {
+                    nextLine = nextLine->next; // parcours liste chaine contenant les transitions
+                }
+            } while (nextLine != NULL);
+        }
         currentEtat->listnbTransitions[i] = count;
         count = 0;
     }
 }
 
-void updateListTransitions(listEtat *currentAutomate){
+void updateListTransitions(listEtat *currentAutomate) {
     int nbColumn = Nb_Colone() - 2;
     Etat *currentEtat = currentAutomate->data;
     listEtat *nextLine = currentAutomate;
@@ -105,8 +105,8 @@ void updateListTransitions(listEtat *currentAutomate){
                 nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
                 etatToPointTo = findSimilarEtat(currentAutomate, nameCurrentTransition);
                 currentEtat->listTransitions[i]->data = etatToPointTo;
-                currentEtat->listTransitions[i]->next=NULL;
-                currentEtat->listnbTransitions[i]=1;
+                currentEtat->listTransitions[i]->next = NULL;
+                currentEtat->listnbTransitions[i] = 1;
             }
         }
         if (nextLine != NULL) {
