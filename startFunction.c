@@ -34,17 +34,22 @@ int completAnAutomate(listEtat *automate) {
 }
 
 int determineAnAutomate(listEtat *automate) {
-    bool result = IsComplet(automate);
-    if (result) {
+    int result = isAutomatonDetermine(automate);
+    if (result==0) {
         printf("L'automate est determiner.\n");
     } else {
-        printf("L'automate n'est pas determiner.\n");
+        printf("L'automate n'est pas determiner, ");
+        if(result==1){
+            printf("car il a plus d'une entree.\n");
+        } else if(result==2){
+            printf("car il a plus d'une flèches libellées du même caractère sortant du même état.\n");
+        }
     }
     return 0;
 }
 
 int standardAnAutomate(listEtat *automate) {
-    bool result = IsComplet(automate);
+    bool result = isAutomatStandard(automate);
     if (result) {
         printf("L'automate est standard.\n");
     } else {

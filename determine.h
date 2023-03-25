@@ -7,6 +7,6 @@
 
 #include "basicFunctionDetermine.h"
 
-bool isAutomatonDetermine(listEtat *currentAutomaton); // return true si l'automate est déterminé, false sinon
+int isAutomatonDetermine(listEtat *currentAutomaton); // return true si l'automate est déterminé, false sinon
 int determine(listEtat *currentAutomaton); // return 0 si pas de pb, 1 si pb
 #endif //AUTOMATE_DETERMINE_H
