@@ -43,6 +43,7 @@ int isAutomatonDetermine(listEtat *automaton) {
 
 int determine(listEtat *currentAutomaton) {
     if (isAutomatonDetermine(currentAutomaton)==0) {
+        printf("L'automate est deja determiniser.\n");
         return 1;
     }
     listEtat *determineAutomate = creerTransition();

@@ -28,7 +28,7 @@ int completAnAutomate(listEtat *automate) {
     if (result) {
         printf("L'automate est complet.\n");
     } else {
-        printf("L'automate n'est pas complet.\n");
+        printf("L'automate n'est pas complet, car il n'y a pas de flèches avec toutes les étiquettes possibles sortant de tous les états.\n");
     }
     return 0;
 }
