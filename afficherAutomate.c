@@ -10,7 +10,7 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
     printf("\n");
     int nblettres= strlen(listLettres);
     listEtat * temp=Automate; Transitions *liaisons1;
-    printf("Etats\t|");
+    printf("Etats|");
     for (int i=0; i<nblettres;i++){
         printf("\t%c\t|", listLettres[i]);
     }
