@@ -4,7 +4,7 @@
 
 #include "determine.h"
 
-bool isAutomatonDetermine(listEtat *automaton) {
+int isAutomatonDetermine(listEtat *automaton) {
     bool moreThanOneTransition = false;
     int countEntry = 0, i;
     int nbColumn = Nb_Colone() - 2;
@@ -33,14 +33,18 @@ bool isAutomatonDetermine(listEtat *automaton) {
     }
 
     if ((countEntry == 1) && (!(moreThanOneTransition))) {
-        return true;
+        return 0;
+    } else if(countEntry != 1){
+        return 1;
+    } else{
+        return 2;
     }
-    return false;
 }
 
-listEtat *determine(listEtat *currentAutomaton) {
-    if (isAutomatonDetermine(currentAutomaton)) {
-        return currentAutomaton;
+int determine(listEtat *currentAutomaton) {
+    if (isAutomatonDetermine(currentAutomaton)==0) {
+        printf("L'automate est deja determiniser.\n");
+        return 1;
     }
     listEtat *determineAutomate = creerTransition();
     listEtat *currentLine = determineAutomate;
@@ -61,12 +65,12 @@ listEtat *determine(listEtat *currentAutomaton) {
                 }
             }
         }
+        currentLine = currentLine->next;
         if (currentLine != NULL) {
             currentEtat = currentLine->data;
-            currentLine = currentLine->next;
         }
     }
-
     updateListTransitions(determineAutomate);
-    return determineAutomate;
+    *currentAutomaton = *determineAutomate;
+    return 0;
 }

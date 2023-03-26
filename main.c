@@ -2,34 +2,59 @@
 
 #include "afficherAutomate.h"
 #include "get_from_txt.h"
-#include "determine.h"
-#include "complet.h"
-#include "strandard.h"
+#include "startFunction.h"
 
 
 int main() {
-    //resoudre se systeme de merde
-    char* listelettre = extract_alphabet_FromLine(0);
+    char *listelettre = extract_alphabet_FromLine(0);
 
-    listEtat* Automate= creerAutomate(listelettre);
+    if ((listelettre[0] != 'e') || (listelettre[1] != 'p') || (listelettre[2] != 's')) {
+        listEtat *automate = creerAutomate(listelettre);
 
-    printf("c:%d\n", IsComplet(Automate));
-    Complet(Automate);
-    displayAutomate(Automate,listelettre);
-    printf("c:%d\n", IsComplet(Automate));
+        printf("Voici l'automate actuel :\n");
+        displayAutomate(automate, listelettre);
 
-    listEtat* Automate1= creerAutomate(listelettre);
 
-    printf("c:%d\n", isAutomatonDetermine(Automate1));
-    determine(Automate1);
-    displayAutomate(Automate1,listelettre);
-    printf("c:%d\n", isAutomatonDetermine(Automate1));
+        printf("\n");
 
-    listEtat* Automate2= creerAutomate(listelettre);
+        determineAnAutomate(automate);
+        standardAnAutomate(automate);
+        completAnAutomate(automate);
 
-    printf("c:%d\n", isAutomatStandard(Automate2));
-    standardiseAutomate(Automate2,Nb_Colone()-2);
-    displayAutomate(Automate2,listelettre);
-    printf("c:%d\n", isAutomatStandard(Automate2));
+        printMenu();
+        char choix = choixUtilisateur();
+        int nbLettre = Nb_Colone() - 2;
+        while (choix != lastNb) {
+            switch (choix) {
+                case '1':
+                    Complet(automate);
+                    printf("\nVoici l'automate completer :\n");
+                    break;
+                case '2':
+                    standardiseAutomate(automate, nbLettre);
+                    printf("\nVoici l'automate standartiser :\n");
+                    break;
+                case '3':
+                    determine(automate);
+                    printf("\nVoici l'automate determiner :\n");
+                    break;
+                case '4':
+                    determine(automate);
+                    Complet(automate);
+                    printf("\nVoici l'automate equivalent deterministe et complet :\n");
+                    break;
+                case '5':
+                    complementarisation(automate);
+                    printf("\nVoici l'automate complementariser :\n");
+                default:
+                    printf("\nJ'ai pas compris, et comment t'es arriver la !!\n");
+            }
+            displayAutomate(automate, listelettre);
+            printMenu();
+            choix = choixUtilisateur();
+        }
+    } else{
+        printf("L'automate selectionner est asynchrone. Hors nos fonction ne sont pas adapter.");
+    }
     return 0;
 }

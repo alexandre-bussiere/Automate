@@ -30,6 +30,7 @@ void Complet(listEtat *automate){
     int nb_alphabet = Nb_Colone() -2;
     int nb_etat = Nb_Ligne()-2;
     if (IsComplet(automate) == true ){
+        printf("L'automate est deja complet.\n");
         return;
     }
     else {
