@@ -8,7 +8,8 @@
 #include "determine.h"
 #include "complet.h"
 #include "strandard.h"
-#define lastNb '5'
+#include "complementarisation.h"
+#define lastNb '6'
 
 void printMenu();
 char choixUtilisateur();

@@ -10,7 +10,8 @@ void printMenu() {
     printf("\t2-Standartiser l'automate\n");
     printf("\t3-Determiniser l'automate\n");
     printf("\t4-Determiniser et completer l'automate\n");
-    printf("\t5-Quitter\n");
+    printf("\t5-Complementariser l'automate\n");
+    printf("\t6-Quitter\n");
 }
 
 char choixUtilisateur() {

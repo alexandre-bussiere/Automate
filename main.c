@@ -43,6 +43,9 @@ int main() {
                     Complet(automate);
                     printf("\nVoici l'automate equivalent deterministe et complet :\n");
                     break;
+                case '5':
+                    complementarisation(automate);
+                    printf("\nVoici l'automate complementariser :\n");
                 default:
                     printf("\nJ'ai pas compris, et comment t'es arriver la !!\n");
             }
