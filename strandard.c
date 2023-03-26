@@ -105,6 +105,7 @@ listEtat *findEntree(listEtat *Automate) {
 void standardiseAutomate(listEtat *Automate) {
     int nblettre=Nb_Colone()-2;
     if (isAutomatStandard(Automate)==true){
+        printf("L'automate est deja standard.\n");
         return;
     }
     Etat *I = creerEtat("I", nblettre);

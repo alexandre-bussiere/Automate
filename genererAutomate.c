@@ -48,10 +48,11 @@ Etat *findEtatinList(Nom nom, listEtat *listEtatpres) {
     while (temp != NULL && !isSameWord(temp->data->nom, nom)) {
         temp = temp->next;
     }
-    if (temp == NULL) {
+    if (temp==NULL){
         return NULL;
     }
     return temp->data;
+
 }
 
 

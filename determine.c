@@ -4,7 +4,7 @@
 
 #include "determine.h"
 
-bool isAutomatonDetermine(listEtat *automaton) {
+int isAutomatonDetermine(listEtat *automaton) {
     bool moreThanOneTransition = false;
     int countEntry = 0, i;
     int nbColumn = Nb_Colone() - 2;
@@ -33,7 +33,44 @@ bool isAutomatonDetermine(listEtat *automaton) {
     }
 
     if ((countEntry == 1) && (!(moreThanOneTransition))) {
-        return true;
+        return 0;
+    } else if(countEntry != 1){
+        return 1;
+    } else{
+        return 2;
     }
-    return false;
+}
+
+int determine(listEtat *currentAutomaton) {
+    if (isAutomatonDetermine(currentAutomaton)==0) {
+        printf("L'automate est deja determiniser.\n");
+        return 1;
+    }
+    listEtat *determineAutomate = creerTransition();
+    listEtat *currentLine = determineAutomate;
+    currentLine->data = combineEveryEntry(currentAutomaton);
+    int nbColumn = Nb_Colone() - 2;
+    Etat *currentEtat = currentLine->data, *etatToAdd;
+    char *nameCurrentTransition;
+
+    while (currentLine != NULL) {
+        for (int i = 0; i < nbColumn; i++) {
+            if (currentEtat->listnbTransitions[i] != 0) {
+                nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
+                etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition);
+                if (etatToAdd == NULL) {
+                    etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]);
+                    etatToAdd->entree = false;
+                    addEtatEndAutomate(determineAutomate, etatToAdd);
+                }
+            }
+        }
+        currentLine = currentLine->next;
+        if (currentLine != NULL) {
+            currentEtat = currentLine->data;
+        }
+    }
+    updateListTransitions(determineAutomate);
+    *currentAutomaton = *determineAutomate;
+    return 0;
 }
