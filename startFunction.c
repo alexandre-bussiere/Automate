@@ -28,7 +28,7 @@ int completAnAutomate(listEtat *automate) {
     if (result) {
         printf("L'automate est complet.\n");
     } else {
-        printf("L'automate n'est pas complet, car il n'y a pas de flèches avec toutes les étiquettes possibles sortant de tous les états.\n");
+        printf("L'automate n'est pas complet, car il n'y a pas de fleches avec toutes les etiquettes possibles sortant de tous les etats.\n");
     }
     return 0;
 }
@@ -42,7 +42,7 @@ int determineAnAutomate(listEtat *automate) {
         if(result==1){
             printf("car il a plus d'une entree.\n");
         } else if(result==2){
-            printf("car il a plus d'une flèches libellées du même caractère sortant du même état.\n");
+            printf("car il a plus d'une fleches libellees du meme caractere sortant du meme etat.\n");
         }
     }
     return 0;
