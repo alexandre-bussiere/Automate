@@ -12,7 +12,7 @@
 bool isAutomatStandard(listEtat *automaton);
 Transitions *concatListTransition(Transitions *t1, Transitions *t2);
 Transitions* concatListTransition(Transitions* t1,Transitions* t2);
-void standardiseAutomate(listEtat* Automate, int nblettre);
+void standardiseAutomate(listEtat* Automate);
 listEtat* findEntree(listEtat* Automate);
 
 #endif //AUTOMATE_STRANDARD_H

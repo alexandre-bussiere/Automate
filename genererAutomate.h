@@ -10,8 +10,8 @@
 #include "initialisation.h"
 #include "stdlib.h"
 #include "get_from_txt.h"
-int lenlist(char** ch);
+int lenlist(char** ch, int nbetat);
 bool isSameWord(char *mot1, char *mot2);
 Etat* findEtatinList( Nom nom,   listEtat* listEtatpres);
-Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, char *listLetrres,Nom** listnomtransition);
-listEtat* creerAutomate(char *listLettres);
+Etat *creerchemin(Etat *EtatX, listEtat* listEtatspres, int nblettre,int nbetat,Nom** listnomtransition);
+listEtat* creerAutomate();

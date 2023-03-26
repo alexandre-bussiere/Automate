@@ -58,7 +58,33 @@ bool isAutomatStandard(listEtat *automaton) {
     }
     return true;
 }
-
+Transitions *concatListTransition(Transitions *t1, Transitions *t2) {
+    Transitions *t3 = creerTransition(), *temp, *temp3;
+    temp = t1, temp3 = t3;
+    if (t2 != NULL) {
+        while (temp != NULL) {
+            if (findEtatinList(temp->data->nom, t2) == NULL) {
+                temp3->data = temp->data;
+                temp3->next = creerTransition();
+                temp3 = temp3->next;
+            }
+            temp = temp->next;
+        }
+        temp3->data = t2->data;
+        temp3->next = t2->next;
+        return t3;
+    }
+    return t1;
+}
+int countnbtransition(Etat* EtatX, int indicelettre){
+    Transitions* temp=EtatX->listTransitions[indicelettre];
+    int nbtransition=0;
+    while(temp!=NULL){
+        nbtransition++;
+        temp=temp->next;
+    }
+    return nbtransition;
+}
 
 listEtat *findEntree(listEtat *Automate) {
     listEtat *listEntree = creerListEtat(), *temp = Automate, *temp2 = listEntree;
@@ -76,7 +102,8 @@ listEtat *findEntree(listEtat *Automate) {
     return listEntree;
 }
 
-void standardiseAutomate(listEtat *Automate, int nblettre) {
+void standardiseAutomate(listEtat *Automate) {
+    int nblettre=Nb_Colone()-2;
     if (isAutomatStandard(Automate)==true){
         printf("L'automate est deja standard.\n");
         return;
@@ -88,7 +115,7 @@ void standardiseAutomate(listEtat *Automate, int nblettre) {
     while (temp != NULL) {
         for (int i = 0; i < nblettre; i++) {
             I->listTransitions[i] = concatListTransition(I->listTransitions[i], temp->data->listTransitions[i]);
-            I->listnbTransitions[i] += temp->data->listnbTransitions[i];
+            I->listnbTransitions[i] = countnbtransition(I, i);
         }
         temp->data->entree=false;
         if (temp->data->sortie==true){
@@ -96,10 +123,10 @@ void standardiseAutomate(listEtat *Automate, int nblettre) {
         }
         temp = temp->next;
     }
-    listEtat* EtatStandart=creerListEtat();
-    EtatStandart->data=I;
-    EtatStandart->next=creerListEtat();
-    EtatStandart->next->data=Automate->data;
-    EtatStandart->next->next=Automate->next;
-    *Automate=*EtatStandart;
+    listEtat* AutomatStandart=creerListEtat();
+    AutomatStandart->data=I;
+    AutomatStandart->next=creerListEtat();// mettre en I en premier dans l'automate
+    AutomatStandart->next->data=Automate->data;
+    AutomatStandart->next->next=Automate->next;
+    *Automate=*AutomatStandart;
 }

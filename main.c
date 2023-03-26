@@ -6,11 +6,6 @@
 
 
 int main() {
-    char *listelettre = extract_alphabet_FromLine(0);
-
-    if ((listelettre[0] != 'e') || (listelettre[1] != 'p') || (listelettre[2] != 's')) {
-        listEtat *automate = creerAutomate(listelettre);
-
         printf("Voici l'automate actuel :\n");
         displayAutomate(automate, listelettre);
 
