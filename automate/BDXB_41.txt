@@ -1,0 +1,7 @@
+etat    a    b    E/S
+0    1    4    E
+1    2    3    S
+2    2    3    S
+3    P    P    S
+4    P    P    S
+P    P    P    -

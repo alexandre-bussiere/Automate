@@ -6,19 +6,21 @@
 
 
 int main() {
-        printf("Voici l'automate actuel :\n");
-        displayAutomate(automate, listelettre);
+    char *listelettre = extract_alphabet_FromLine(0);
+    listEtat *automate = creerAutomate(listelettre);
+
+    printf("Voici l'automate actuel :\n");
+    displayAutomate(automate, listelettre);
 
 
-        printf("\n");
-
+    printf("\n");
+    if (listelettre[0] != 'e') {
         determineAnAutomate(automate);
         standardAnAutomate(automate);
         completAnAutomate(automate);
 
         printMenu();
         char choix = choixUtilisateur();
-        int nbLettre = Nb_Colone() - 2;
         while (choix != lastNb) {
             switch (choix) {
                 case '1':
@@ -26,7 +28,7 @@ int main() {
                     printf("\nVoici l'automate completer :\n");
                     break;
                 case '2':
-                    standardiseAutomate(automate, nbLettre);
+                    standardiseAutomate(automate);
                     printf("\nVoici l'automate standartiser :\n");
                     break;
                 case '3':
@@ -49,7 +51,7 @@ int main() {
             printMenu();
             choix = choixUtilisateur();
         }
-    } else{
+    } else {
         printf("L'automate selectionner est asynchrone. Hors nos fonction ne sont pas adapter.");
     }
     return 0;
