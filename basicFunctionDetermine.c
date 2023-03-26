@@ -4,26 +4,7 @@
 
 #include "basicFunctionDetermine.h"
 
-Transitions *concatListTransition(Transitions *t1, Transitions *t2) {
-    Transitions *t3 = creerTransition(), *temp, *temp3;
-    temp = t1, temp3 = t3;
-    if (t2 != NULL) {
-        while (temp != NULL) {
-            if (findEtatinList(temp->data->nom, t2) == NULL) {
-                temp3->data = temp->data;
-                temp3->next = creerTransition();
-                temp3 = temp3->next;
-            }
-            temp = temp->next;
-        }
-        temp3->data = t2->data;
-        temp3->next = t2->next;
-        return t3;
-    }
-    return t1;
-}
-
-char *copyString(char *s) {
+char *copyString(char *s) { // copie une chaine de caractère
     int i;
     char *s2;
     s2 = (char *) malloc(20);
@@ -35,7 +16,7 @@ char *copyString(char *s) {
     return s2;
 }
 
-bool isCharInString(char characterToVerify, char *string) {
+bool isCharInString(char characterToVerify, char *string) { // regarde si le caractère envoyer est dans la chaine de caractère envoyer
     int length = strlen(string);
     for (int i = 0; i < length; i++) {
         if (string[i] == characterToVerify) {
@@ -61,7 +42,7 @@ bool areStringTheSame(char *string1, char *string2) { // compare 2 string, but h
     return false;
 }
 
-Etat *findSimilarEtat(listEtat *currentAutomate, char *nameEtat) {
+Etat *findSimilarEtat(listEtat *currentAutomate, char *nameEtat) { // renvoie l'adresse de l'état avec le nom demander
     listEtat *temp = currentAutomate;
     while ((temp != NULL) && (!areStringTheSame(temp->data->nom, nameEtat))) {
         temp = temp->next;
@@ -72,7 +53,7 @@ Etat *findSimilarEtat(listEtat *currentAutomate, char *nameEtat) {
     return NULL;
 }
 
-void updateListnbTransitions(Etat *currentEtat) {
+void updateListnbTransitions(Etat *currentEtat) { // met a jour le tableau contenant le nombre de transition pour chaque lettre de l'aphabet
     int nbColumn = Nb_Colone() - 2;
     int count = 0;
     for (int i = 0; i < nbColumn; i++) {
@@ -90,7 +71,7 @@ void updateListnbTransitions(Etat *currentEtat) {
     }
 }
 
-void updateListTransitions(listEtat *currentAutomate) {
+void updateListTransitions(listEtat *currentAutomate) { // met a jour le tableau contenant les transitions pour chaque lettre de l'aphabet
     int nbColumn = Nb_Colone() - 2;
     Etat *currentEtat = currentAutomate->data;
     listEtat *nextLine = currentAutomate;
@@ -115,7 +96,7 @@ void updateListTransitions(listEtat *currentAutomate) {
     } while ((nextLine != NULL));
 }
 
-Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
+Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) { // combine les 2 états envoyer
     Etat *newCombineEtat;
     int nbColumn = Nb_Colone() - 2;
 
@@ -144,7 +125,7 @@ Etat *combine2Etat(Etat *firstEtat, Etat *secondEtat) {
     return newCombineEtat;
 }
 
-Etat *combineEveryEntry(listEtat *automate) {
+Etat *combineEveryEntry(listEtat *automate) { // combine toutes les entrée de l'automate envoyer
     Etat *combineEntry = NULL;
     if ((automate != NULL) || (automate->data != NULL)) {
         Etat *currentEtat = automate->data;
@@ -167,7 +148,7 @@ Etat *combineEveryEntry(listEtat *automate) {
     return combineEntry;
 }
 
-Etat *combineEveryEtatFromTransitions(Transitions *listCurrentTransitions) {
+Etat *combineEveryEtatFromTransitions(Transitions *listCurrentTransitions) {// combine tout les états de la liste de transition envoyer
     Etat *combineEtat = NULL;
     if ((listCurrentTransitions != NULL) || (listCurrentTransitions->data != NULL)) {
         Etat *currentEtat = listCurrentTransitions->data;
@@ -188,7 +169,7 @@ Etat *combineEveryEtatFromTransitions(Transitions *listCurrentTransitions) {
     return combineEtat;
 }
 
-char *concatNameTransition(Transitions *listCurrentTransitions) {
+char *concatNameTransition(Transitions *listCurrentTransitions) { // combine le nom de touts les états de la liste de transition envoyer
     char *nameConcat = NULL;
     if ((listCurrentTransitions != NULL) || (listCurrentTransitions->data != NULL)) {
         Etat *currentEtat = listCurrentTransitions->data;
@@ -209,7 +190,7 @@ char *concatNameTransition(Transitions *listCurrentTransitions) {
 }
 
 
-void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) {
+void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) { // ajoute l'état envoyer a la fin de l'automate envoyer
     listEtat *temp = automate;
     while (temp->next != NULL) {
         temp = temp->next;
@@ -217,8 +198,4 @@ void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd) {
     Transitions *temp2 = creerTransition();
     temp2->data = etatToAdd;
     temp->next = temp2;
-}
-
-void Test() {
-
 }

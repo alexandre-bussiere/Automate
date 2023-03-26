@@ -6,6 +6,7 @@
 #define AUTOMATE_BASICFUNCTIONDETERMINE_H
 
 #include "genererAutomate.h"
+#include "strandard.h"
 #include <stdio.h>
 
 void updateListnbTransitions(Etat *currentEtat);
@@ -20,9 +21,5 @@ Etat *combineEveryEtatFromTransitions(Transitions *listCurrentTransitions);
 char *concatNameTransition(Transitions *listCurrentTransitions);
 
 void addEtatEndAutomate(listEtat *automate, Etat *etatToAdd);
-
-
-
-void Test();
 
 #endif //AUTOMATE_BASICFUNCTIONDETERMINE_H

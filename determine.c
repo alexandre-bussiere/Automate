@@ -48,7 +48,7 @@ int determine(listEtat *currentAutomaton) {
     }
     listEtat *determineAutomate = creerTransition();
     listEtat *currentLine = determineAutomate;
-    currentLine->data = combineEveryEntry(currentAutomaton);
+    currentLine->data = combineEveryEntry(currentAutomaton); // création de la nouvelle entrée
     int nbColumn = Nb_Colone() - 2;
     Etat *currentEtat = currentLine->data, *etatToAdd;
     char *nameCurrentTransition;
@@ -57,20 +57,20 @@ int determine(listEtat *currentAutomaton) {
         for (int i = 0; i < nbColumn; i++) {
             if (currentEtat->listnbTransitions[i] != 0) {
                 nameCurrentTransition = concatNameTransition(currentEtat->listTransitions[i]);
-                etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition);
+                etatToAdd = findSimilarEtat(determineAutomate, nameCurrentTransition); // est-ce que l'état existe déjà ?
                 if (etatToAdd == NULL) {
-                    etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]);
+                    etatToAdd = combineEveryEtatFromTransitions(currentEtat->listTransitions[i]); // création du nouvel état
                     etatToAdd->entree = false;
-                    addEtatEndAutomate(determineAutomate, etatToAdd);
+                    addEtatEndAutomate(determineAutomate, etatToAdd); // ajout du nouvel état a la fin de l'automate
                 }
             }
         }
-        currentLine = currentLine->next;
+        currentLine = currentLine->next; // parcours de l'automate
         if (currentLine != NULL) {
             currentEtat = currentLine->data;
         }
     }
-    updateListTransitions(determineAutomate);
+    updateListTransitions(determineAutomate); // mise a jour des transition
     *currentAutomaton = *determineAutomate;
     return 0;
 }
