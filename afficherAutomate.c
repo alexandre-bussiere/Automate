@@ -13,6 +13,17 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
     printf("\n");
     printf("----------------------\n");
     while (temp!=NULL){
+
+        printf("%s\t|",temp->data->nom);
+        for (int i=0;i<nblettres;i++){
+            printf("\t");
+            liaisons1=temp->data->listTransitions[i];
+            while (liaisons1!=NULL){
+                printf("%s,", liaisons1->data->nom);
+                liaisons1=liaisons1->next;
+            }
+            printf("\t|");
+        }
         if (temp->data->entree==true && temp->data->sortie==true){
             printf("(E/S)");
         }
@@ -23,16 +34,6 @@ void displayAutomate(listEtat* Automate, char* listLettres) {
             if (temp->data->sortie==true){
                 printf("(S)");
             }
-        }
-
-        printf("%s\t|\t",temp->data->nom);
-        for (int i=0;i<nblettres;i++){
-            liaisons1=temp->data->listTransitions[i];
-            while (liaisons1!=NULL){
-                printf("%s,", liaisons1->data->nom);
-                liaisons1=liaisons1->next;
-            }
-            printf("\t|\t");
         }
         printf("\n");
         printf("-------\t-------\t-------\t\n");

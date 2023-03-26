@@ -8,12 +8,11 @@
 
 
 int main() {
-
-    listEtat* Automate= creerAutomate("abcd");
-    displayAutomate(Automate,"abcd");
+    listEtat* Automate= creerAutomate();
+    displayAutomate(Automate,"a");
     printf("\n");
     standardiseAutomate(Automate);
-    displayAutomate(Automate,"abcd");
+    displayAutomate(Automate,"a");
 
 
     return 0;
