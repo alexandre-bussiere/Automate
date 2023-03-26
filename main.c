@@ -46,6 +46,7 @@ int main() {
                 case '5':
                     complementarisation(automate);
                     printf("\nVoici l'automate complementariser :\n");
+                    break;
                 default:
                     printf("\nJ'ai pas compris, et comment t'es arriver la !!\n");
             }
