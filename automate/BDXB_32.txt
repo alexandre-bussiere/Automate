@@ -1,4 +1,4 @@
-etat    eps    a    b    c    E/S
+etat    e    a    b    c    E/S
 0    1,10    -    -    -    E
 1    2,6    -    -    -    -
 2    3,5    -    -    -    -
